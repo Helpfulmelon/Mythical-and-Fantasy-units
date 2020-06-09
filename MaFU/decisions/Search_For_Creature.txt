@@ -3,11 +3,6 @@
 			
 
         potential = {
-			
-			
-			
-			
-
 				any_owned_province = {
 					#has_province_modifier = missing_livestock
 					any_neighbor_province = {
@@ -65,6 +60,25 @@
 			factor = 1
 		}
 
+	}
+	Challenge_dragon = {
+		potential = {
+			var:dragon_challenged = 1 #has_var ?
+		}
+		allow = {
+			random_unit = { #Pseudocode cause I don't remember how this works lol
+				in_location = {
+					city_borders_volcano #Switch neighbouring volcano system to use Var
+					has_commander = yes
+					commander = current_ruler
+				}
+			}
+		}
+		effect = {
+			trigger_event = {
+				id = Side_events.1
+			}
+		}
 	}
 }
 
