@@ -823,10 +823,22 @@ Mythical_events.6 = { #The Dragon has granted you an audience within the cave. H
 		}
 
 	}
-	option = { 
+	option = { #Defeat in combat
 		name = Mythical_events.6.b
 		trigger = { }
+		if = {
+			limit = {
+				current_ruler = {
+					martial > 10
+				}
+			}
+			set_variable = {
+				name = dragon_challenged
+				value = 1
+			}
 
+
+		}
 	}
 
 }

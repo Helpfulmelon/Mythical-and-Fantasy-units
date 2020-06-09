@@ -1,0 +1,33 @@
+﻿namespace = Side_events
+
+Side_events.1 = {
+    type = country_event
+    title = Side_events.1.t
+    desc = Side_events.1.desc
+    left_portrait = current.ruler
+    right_portrait = #Find dragon
+
+    trigger = {current_ruler = { martial > 10 }    
+    }
+    immediate = {
+        random_unit = {
+            limit = {
+                city_borders_correct_volcano = yes
+                in location = yes #But actual working code
+            }
+        }
+    }
+    option = {
+        random_list = { #See if can use variable in place of integer, system similar to trials?
+            50 = {
+                current_ruler = {
+                    death = {death_reason = death_obscurity}
+                }
+                add_manpower = -10
+            }
+            50 = {
+
+            }
+        }
+    }
+}
