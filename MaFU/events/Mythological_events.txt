@@ -1,0 +1,939 @@
+﻿namespace = Mythical_events
+#Events regarding mythical creatures and their spawnings
+Mythical_events.900 = { #Hidden event to fire magic returning for all
+	type = country_event
+	title = Mythical_events.1.t
+	desc = Mythical_events.1.desc
+    picture = natural_disaster
+
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		current_date > 450.1.1
+	}
+	immediate = {
+		hidden_effect = {
+			set_global_variable = {
+				name = magic_returned
+				value = yes
+			}
+		}
+			every_country = {
+				limit = {
+					any_owned_province = {
+						total_population > 1
+					}
+				}
+				trigger_event = {
+					id = Mythical_events.1
+				}
+
+			}
+		
+	}
+}
+
+Mythical_events.1 = { #Magic is returning to the world (Precursor event)
+	
+	type = country_event
+	title = Mythical_events.1.t
+	desc = Mythical_events.1.desc
+    picture = natural_disaster
+
+	fire_only_once = yes
+
+	trigger = {
+		current_date > 450.1.1
+	}
+	immediate = {
+
+
+
+			random_owned_province = {
+				limit = {
+					any_neighbor_province = {
+						has_province_modifier = dragon_swayed
+					}
+				}
+				save_scope_as = nearby_volcano_province
+
+			
+		
+	
+		}
+	 
+
+
+		
+	}
+	option = {
+		name = Mythical_events.1.a
+		CUSTOM_TOOLTIP = "You reassure your spouse and settle down for the night."	
+		
+	}
+	option = {
+		name = Mythical_events.1.b
+		CUSTOM_TOOLTIP = "You chastise your spouse for believing in such superstitious nonsense."
+		
+	}
+
+}
+Mythical_events.2 = { #Cattle rustlers
+
+	type = country_event
+	title = Mythical_events.2.t
+	desc = Mythical_events.2.desc
+    picture = farmer_in_latin_countryside
+
+	fire_only_once = no
+
+	weight_multiplier = {
+		
+	}
+	trigger = {
+		current_date > 450.1.1
+		any_owned_province = {
+			trade_goods = cattle
+			NOT = {
+				has_province_modifier = missing_livestock
+			}
+		}
+		OR = {
+			any_neighbour_country = {
+					country_borders_volcano_province_trigger = yes
+			}
+				country_borders_volcano_province_trigger = yes
+		}
+
+	}
+	immediate = {
+		
+	
+		random_owned_province = {
+			limit = {
+				trade_goods = cattle
+			}
+		
+			add_permanent_province_modifier = {
+				name = missing_livestock
+			}
+		}
+		
+	}
+	option = {
+		name = Mythical_events.2.a
+	}
+	
+}
+
+Mythical_events.3 = { #start of chain, Rumours of Dragon spreading
+    type = country_event
+	title = Mythical_events.3.t
+    desc = Mythical_events.3.desc
+    picture = natural_disaster
+    fire_only_once = no
+
+    weight_multiplier = {}
+
+    trigger = {
+		has_global_variable = magic_returned
+	}
+	
+    immediate = {
+		hidden_effect = {
+			create_character = {
+				first_name = "A"
+				family_name = "TheMagicDragon"
+
+				culture = draconic
+				religion = druidism
+				age = 200
+
+				female = no
+				no_traits = yes
+				no_stats = yes
+				add_martial = 10
+				add_finesse = 10
+				add_charisma = 10
+				add_zeal = 10
+				save_scope_as = dragon_character
+			}
+			
+			random_list = {
+				50 = {
+					set_variable = {
+						name = good_dragon
+						value = yes
+					}
+				}
+				50 = {
+					set_variable ={
+						name = bad_dragon
+						value = yes
+
+					}
+				}
+			}
+
+			random_owned_province = {
+				limit = {
+					OR = {
+						city_borders_vesuvius_trigger = yes
+						city_borders_aetna_trigger = yes
+						city_borders_ararat_trigger = yes
+						city_borders_methana_trigger = yes
+						city_borders_aragats_trigger = yes
+						city_borders_argaeus_mons_trigger = yes
+						city_borders_argaios_mons_trigger = yes
+						city_borders_ausara_trigger = yes
+						city_borders_bamni_trigger = yes
+						city_borders_qarqar_trigger = yes
+						city_borders_caucasus_mons_trigger = yes
+						city_borders_iberia_mons_trigger = yes
+					}
+					total_population > 1
+					
+				}
+				save_scope_as = summon_army_scope
+			}
+		
+			random_owned_province = {
+				limit = {
+					trade_goods = gems
+				}
+				save_scope_as = offered_gems_province
+
+
+			}
+
+		
+		}
+	}
+
+    
+    option = {
+		name = Mythical_events.3.a #High gold, low loss 
+		trigger = {
+			NAND = {
+				angery_ruler = yes
+				manpower > 20
+			}
+			treasury >= 10000
+		}
+		
+		
+		if = {
+			limit = {
+				any_owned_province = {
+					city_borders_vesuvius_trigger = yes
+					p:7733 = {
+						NOT = {has_province_modifier = dragon_swayed}
+					   }
+				}
+			}
+			p:7733 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+				city_borders_aetna_trigger = yes
+				}
+				p:5000 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:5000 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_ararat_trigger = yes
+				}
+				p:5212 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:5212 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_methana_trigger = yes
+				}
+				p:7734 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:7734 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_aragats_trigger = yes
+				}
+				p:5208 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:5208 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_argaeus_mons_trigger = yes
+				}
+				p:5170 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:5170 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_argaios_mons_trigger = yes
+				}
+				p:7735 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:7735 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_ausara_trigger = yes
+				}
+				p:7736 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:7736 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_bamni_trigger = yes
+				}
+				p:5210 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:5210 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_qarqar_trigger = yes
+				}
+				p:7737 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+			p:7737 = {
+				add_permanent_province_modifier = {
+					name = dragon_swayed
+					duration = -1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_caucasus_mons_trigger = yes
+				}
+				p:5323 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+
+				p:5323 = {
+					add_permanent_province_modifier = {
+						name = dragon_swayed
+						duration = -1
+					}
+				}
+		}
+		else_if = {
+			limit = {
+				any_owned_province = {
+					city_borders_iberia_mons_trigger = yes
+				}
+				p:5324 = {
+					NOT = {has_province_modifier = dragon_swayed}
+				   }
+			}
+
+				p:5324 = {
+					add_permanent_province_modifier = {
+						name = dragon_swayed
+						duration = -1
+					}
+				}
+		}
+		add_treasury = -10000
+		
+
+        
+
+		trigger_event = {
+			id = Mythical_events.4
+			}
+	}
+	#}
+
+		
+    
+    option = {
+		name = Mythical_events.3.b #Less expensive, pop loss
+		trigger = {
+			NAND = {
+				angery_ruler = yes
+				manpower > 20
+			}
+			treasury < 10000
+			treasury > 3000
+		}
+		scope:nearby_volcano_province = {
+            add_permanent_province_modifier = {
+				name = dragon_swayed
+				duration = -1
+			}
+        }
+        add_treasury = -3000
+		current_ruler = {
+			add_popularity = subtract_popularity_medium
+		}
+
+		scope:summon_army_scope = {
+        	while = {
+          	  	count = 5
+           	 	limit = {
+                	total_population > 1
+            	}
+			random_pops_in_province = {
+				kill_pop = yes
+			}
+        }
+		}
+		
+            }
+	option = {
+		name = Mythical_events.3.c #Cruel ruler use pops and manpower to find the location of the lair
+		highlight = yes
+		trigger = {
+			num_of_provinces > 0
+			manpower > 20
+			angery_ruler = yes
+		}
+		add_manpower = -20
+		random_owned_province = {
+			limit = {
+			total_population > 10
+			total_population < 50
+			}
+			province_pop_disaster_historical = yes
+			add_permanent_province_modifier = {
+				name = sacrificed_pops
+			}
+		}
+		current_ruler = {
+			add_popularity = subtract_popularity_huge
+		}
+		
+	}
+	option = {
+		name = Mythical_events.3.d #Back out of decision
+		hidden_effect = {
+			scope:dragon_character = {
+				death = { death_reason = death_obscurity}
+			}
+		}
+	}
+
+}
+
+Mythical_events.4 = { #You found the lair!
+    type = country_event
+	title = Mythical_events.4.t
+    desc = Mythical_events.4.desc
+	picture = natural_disaster
+	fire_only_once = no
+	
+	weight_multiplier = {
+	}
+	trigger = {
+		has_global_variable = magic_returned
+	}
+
+	immediate = {
+		random_owned_province = {
+			limit = {
+			is_neighbor = scope:nearby_volcano_province
+			}
+		save_scope_as = volcano_neighbour_scope
+		}
+		save_scope_as = current_country
+		scope:nearby_volcano_province = {
+			add_permanent_province_modifier = {
+				name = dragon_lair_found
+				duration = -1
+			}
+			remove_province_modifier = dragon_swayed
+		}
+		random_character = {
+			limit = {
+			is_alive = yes
+			employer = ROOT
+			NOT = {has_culture = draconic}
+			loyalty > 33
+			charisma > 5
+			charisma < 10
+			}
+			save_scope_as = character_char_5
+		}
+		random_character = {
+			limit = {
+			is_alive = yes
+			employer = ROOT
+			NOT = {has_culture = draconic}
+			loyalty > 33
+			charisma > 10
+			charisma < 15
+			}
+			save_scope_as = character_char_10
+		}
+		random_character = {
+			limit = {
+			is_alive = yes
+			employer = ROOT
+			NOT = {has_culture = draconic}
+			loyalty > 33
+			charisma > 15
+			}
+			save_scope_as = character_char_15
+		}
+	}
+	
+	option = {
+		name = Mythical_events.4.a #Use gemstones to lure the dragon out.
+		custom_tooltip = "The old stories told of a creature that loved gemstones, perhaps this was it!"
+		exclusive = no
+		highlight = yes
+		trigger = {
+			any_owned_province = {
+				trade_goods = gems
+			}
+		}
+		
+		scope:offered_gems_province = {
+			add_permanent_province_modifier = {
+				name = dragon_ate_gems
+				duration = -1
+			}
+			set_trade_goods = stone
+		}
+		
+		random_list = {
+			90 = {
+				trigger_event = {
+					id = Mythical_events.5
+				}
+			}
+			10 = {
+				trigger_event = {
+					id = Mythical_events.6
+				}
+			}
+		}
+
+
+	
+	}
+
+	
+	option = { #Send a Charismatic character
+		name = Mythical_events.4.b
+		trigger = {
+			any_character = {
+				is_alive = yes
+				loyalty > 33
+				charisma > 5
+			}
+		}
+		if = {
+			limit = {
+				NAND = {scope:character_char_10 = {	exists = yes } 
+						scope:character_char_15 = { exists = yes }
+				}
+			}
+			scope:character_char_5 = {
+				random_list = {
+					75 = {
+						trigger = {
+							NOT = {	scope:character_char_10 = {	exists = yes } 
+									scope:character_char_15 = { exists = yes }
+							}						
+						}
+							death = {death_reason = death_obscurity}
+						}
+					20 = {
+						trigger = { }
+						scope:character_char_5 = {
+							add_trait = wounded
+						}
+							trigger_event = {id = Mythical_events.6}
+						}
+					5 = {
+						trigger = {}
+							trigger_event = {id = Mythical_events.5}
+					}
+					}
+				}
+		}
+		else_if = {
+			limit = {
+					scope:character_char_10 = { exists = yes }
+				NOT = {	scope:character_char_15 = { exists = yes } }
+			}
+			scope:character_char_10 = {
+				random_list = {
+					50 = {
+						trigger = {
+							NOT = {	scope:character_char_15 = { exists = yes } }
+						}
+						death = {death_reason = death_obscurity}
+					}
+					25 = {
+						trigger = {}
+						trigger_event = { id = Mythical_events.6 }
+					}
+					25 = {
+						trigger = {	}
+						trigger_event = { id = Mythical_events.5 }
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {scope:character_char_15 = { exists = yes } }
+				scope:character_char_15 = {
+					random_list = {
+						25 = {
+							trigger = {NOT = {
+								any_character = {
+									loyalty > 33
+									charisma > 10
+								}
+							}						}
+								death = {death_reason = death_obscurity}
+							}
+						60 = {
+							trigger = {}
+							trigger_event = { id = Mythical_events.5}
+						}
+						15 = {
+							trigger = {}
+							trigger_event = { id = Mythical_events.6}
+						}
+					}
+				}
+		}
+	}
+
+
+
+}
+
+Mythical_events.5 = { #The Dragon has left the cave to meet you Easy route
+	type = country_event
+	title = Mythical_events.5.t
+	desc = Mythical_events.5.desc
+	picture = natural_disaster
+	fire_only_once = no
+	trigger = {
+		has_global_variable = magic_returned
+		any_owned_province = {
+			has_province_modifier = dragon_ate_gems
+		}
+	}
+	immediate = {
+		set_variable = {
+			name = dragon_out_cave
+			days = 365
+		}
+	}
+	option = {
+		name = Mythical_events.5.a
+		trigger = {
+			any_owned_province = {
+				is_capital = no
+				has_city_status = no
+			}
+		}
+			random_owned_province = {
+				limit = {
+					is_capital = no
+					has_city_status = no
+				}
+				add_province_modifier = {
+					name = Build_Lair_Here
+					duration = 365
+				}
+		}
+		trigger_event = {
+			id = Mythical_events.7
+			days = 1
+		}
+		trigger_event = {
+			id = Mythical_events.8
+			days = 365
+		}
+	}
+	option = {
+		name = Mythical_events.5.b
+		trigger = {
+			current_ruler = {
+				NOT = {
+					has_trait = kindly
+				}
+				any_child = {
+					is_male = no
+					is_alive = yes
+				}
+			}
+		}
+		current_ruler = {
+			random_child = {
+				limit = {
+					is_male = no
+					is_alive = yes
+				}
+				death = {
+					death_reason = death_obscurity
+				}
+			}
+		}
+		set_variable = {name = sacrificed_child value = yes}
+		trigger_event = {id = Mythical_events.8}
+	}
+
+
+}
+
+
+Mythical_events.6 = { #The Dragon has granted you an audience within the cave. Harder route
+	type = country_event
+	title = Mythical_events.6.t
+	desc = Mythical_events.6.desc
+	picture = natural_disaster
+	fire_only_once = no
+
+	trigger = {
+		has_global_variable = magic_returned
+		any_owned_province = {
+			has_province_modifier = dragon_ate_gems
+		}
+	}
+
+	option = {
+		name = Mythical_events.6.a #Judged by the dragon
+		trigger = {	}
+		switch = {
+			trigger = has_variable
+
+			good_dragon = {
+				if = {
+					limit = {
+						good_ruler = no
+					}
+					current_ruler = {
+						death = {death_reason = death_obscurity}
+					}
+
+				}
+				else = {
+					trigger_event = {
+						id = Mythical_events.8
+					}
+				}
+
+			}
+			bad_dragon = {
+				if = {
+					limit = {
+						bad_ruler = no
+					}
+					current_ruler = {
+						death = {death_reason = death_obscurity}
+					}
+				}
+				else = {
+					trigger_event = {
+						id = Mythical_events.8
+					}
+				}
+			}
+		}
+
+	}
+	option = { 
+		name = Mythical_events.6.b
+		trigger = { }
+
+	}
+
+}
+Mythical_events.7 = { #Failed to build lair
+	type = country_event
+	title = Mythical_events.7.t
+	desc = Mythical_events.7.desc
+	picture = natural_disaster
+	fire_only_once = no
+
+		trigger = {
+			any_owned_province = {
+				NOR = {
+					has_province_modifier = Build_Lair_here
+					has_building = synthetic_lair
+					
+				}
+			}
+		}
+		option = {
+			trigger = {
+				treasury >= 1000
+				OR = {
+					current_ruler = {
+						any_child = {
+							is_alive = yes
+						}
+						is_alive = yes
+					}
+				}
+			}
+			name = Mythical_events.7.a
+			current_ruler = {
+				every_child = {
+					death = {death_reason = death_obscurity}
+				}
+				death = {death_reason = death_obscurity}
+			}
+			add_treasury = -1000
+			trigger_event = {
+				id = Mythical_events.6
+			}
+		}
+		option = {
+		name = Mythical_events.7.b
+			capital_scope.state = {
+				save_scope_as = capital_state
+				add_state_modifier = {
+					name = ravaged_by_dragon
+					duration = 365
+				}
+
+			}
+
+			every_owned_province = {
+				limit = {
+					is_in_area = ROOT.capital_scope
+				}
+
+			ordered_pops_in_province = {
+				limit = {
+
+				}
+				order_by = pop_hapiness
+				max = {
+					value = total_population
+					multiply = 0.3
+					round = floor
+				}
+				check_range_bounds = no
+				kill_pop = yes
+			}
+		}
+
+
+			
+		}
+}
+
+Mythical_events.8 = { #Successfully built lair
+	type = country_event
+	title = Mythical_events.8.t
+	desc = Mythical_events.8.desc
+	picture = natural_disaster
+	fire_only_once = no
+	trigger = {
+		OR = {
+			any_owned_province = {
+				has_building = synthetic_lair
+				NOT = {	has_province_modifier = Build_Lair_Here	}
+			}
+			has_variable = sacrificed_child
+		}
+	}
+	immediate = {
+		
+	}
+	option = {
+		name = Mythical_events.8.a
+		create_unit = {
+			name = "Puff The Magic Dragon"
+			mercenary = yes
+			location = 82
+			sub_unit = dragon
+			commander = scope:dragon_character
+			save_scope_as = dragon_army
+		}
+	}
+
+}

@@ -1,0 +1,28 @@
+﻿
+dragon_swayed = {}
+dragon_lair_found = {}
+completely_destroyed = {
+	local_population_capacity = -100
+}
+dragon_ate_gems = {}
+missing_livestock = {
+	local_citizen_happyness = -0.2
+	local_freemen_happyness = -0.2
+	local_tribesmen_happyness = -0.2
+	local_unrest = 1
+}
+sacrificed_pops = {
+	local_slaves_happyness = -0.5
+	local_citizen_happyness = -0.5
+	local_freemen_happyness = -0.5
+	local_tribesmen_happyness = -0.5
+}
+Build_Lair_Here = {
+
+}
+ravaged_by_dragon = {
+	local_citizen_happyness = -0.5
+	local_freemen_happyness = -0.5
+	local_slaves_happyness = -0.5
+	local_tribesmen_happyness = -0.5
+}

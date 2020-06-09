@@ -1,0 +1,73 @@
+﻿country_decisions = {
+    search_for_creature = {
+			
+
+        potential = {
+			
+			
+			
+			
+
+				any_owned_province = {
+					#has_province_modifier = missing_livestock
+					any_neighbor_province = {
+						any_volcano_province_trigger = yes
+						NOR = {
+							has_province_modifier = dragon_swayed
+							has_province_modifier = dragon_lair_found
+						}
+					}						
+				}
+				
+					country_borders_volcano_province_trigger = yes
+				
+		}
+	
+		highlight = {
+        	scope:province = { 
+				any_volcano_province_trigger = yes
+			}
+		}
+
+        allow = {
+			any_owned_province = {
+				any_neighbor_province = {
+					any_volcano_province_trigger = yes
+					NOR = {
+						has_province_modifier = dragon_swayed
+						has_province_modifier = dragon_lair_found
+					}
+				}
+			}
+		}
+			#treasury >= 3000
+
+		
+			
+			
+        
+        
+        effect = {
+			
+				trigger_event = { id = Mythical_events.3
+					#days = {20 50}
+					
+				 }
+				 add_treasury = 10000
+
+				
+			}
+
+		
+
+		
+		ai_will_do = {
+			factor = 1
+		}
+
+	}
+}
+
+
+
+

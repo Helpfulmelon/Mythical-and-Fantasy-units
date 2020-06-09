@@ -1,0 +1,74 @@
+﻿any_volcano_province_trigger = {
+		OR = {
+			province_id = 7733
+			province_id = 5000
+			province_id = 5212
+			province_id = 5208
+			province_id = 7734
+			province_id = 5170
+			province_id = 7735
+			province_id = 7736
+			province_id = 5210
+			province_id = 7737
+			province_id = 5323
+			province_id = 5324
+		}
+	
+}
+
+angery_ruler = {
+	current_ruler = {
+		OR = {
+			has_trait = cruel
+			has_trait = arbitrary
+			has_trait = corrupt
+			has_trait = harsh
+			has_trait = selfish
+			has_trait = silver_tongued
+		}
+	}
+}
+good_ruler = {
+	current_ruler = {
+		OR = {
+			has_trait = good_natured
+			has_trait = silver_tongued
+			has_trait = tolerant
+			has_trait = just
+			has_trait = merciful
+			has_trait = righteous
+			has_trait = founder
+			has_trait = benefactor
+			has_trait = scholar
+			has_trait = humble
+			has_trait = forgiving
+			has_trait = generous
+			has_trait = honest
+			has_trait = loving
+			has_trait = content
+			has_trait = trusting
+			has_trait = wise
+			has_trait = secure
+			has_trait = kindly
+
+		}
+	}
+}
+bad_ruler = {
+	current_ruler = {
+		OR = {
+			has_trait = incapable
+			has_trait = cruel
+			has_trait = arbitrary
+			has_trait = corrupt
+			has_trait = harsh
+			has_trait = selfish
+			has_trait = silver_tongued
+			has_trait = vengeful
+			has_trait = deceitful
+			has_trait = stubborn
+			has_trait = jealous
+			
+		}
+	}
+}

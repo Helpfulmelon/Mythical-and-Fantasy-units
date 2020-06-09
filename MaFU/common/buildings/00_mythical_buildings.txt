@@ -1,0 +1,37 @@
+﻿synthetic_lair = {
+
+	local_population_capacity = -50
+	cost = 1
+	time = 1
+	potential = {
+		has_city_status = no
+		has_global_variable = magic_returned
+	}
+	allow = {
+		has_province_modifier = Build_Lair_Here
+
+		trigger_if = {
+			limit = {
+				NOT = {has_province_modifier = Build_Lair_Here}
+			}
+			custom_tooltip = {
+				text = "NO_REASON_BUILD_TT"
+			}
+		}
+		#NOT = {
+		#	any_owned_province = {
+		#		has_building = synthetic_lair
+		#	}
+		#}
+	}
+	modification_display = {
+		0 = local_population_capacity
+		1 = local_migration_attraction
+	}
+	chance = {
+		modifier = {
+			total_population >= population_cap
+			add = 10
+		}
+	}
+}

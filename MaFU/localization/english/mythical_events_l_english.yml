@@ -1,0 +1,75 @@
+﻿ l_english:
+ ####################################################
+ #Mythical Events
+ ####################################################
+
+
+ Mythical_events.1.t:3 "Something in the Air"
+ Mythical_events.1.desc:3 "Something is different today. All across the proud nation of [ROOT.GetCountry.GetName], children are hiding in their beds, parents are looking at each other from across the room; though none could quite figure out why. Even you are not immune, your spouse, covers clutched up against their chest asks you if you can feel it."
+ Mythical_events.1.a:1 ""There's nothing out there, my love.""
+ Mythical_events.1.b:1 ""What are you talking about? There is nothing out there, tomorrow will be the same as today!""
+ Mythical_events.2.t:1 "Missing Livestock"
+ Mythical_events.2.desc:1 "Time after time, reports are coming in, cattle keeps going missing, the peasants are asking the government to step in and put an end to these cattle rustlers."
+ Mythical_events.2.a:0 "Dealing with these petty bandits should be a simple task, right?"
+ Mythical_events.3.t:0 "A Beast Sighted"
+ Mythical_events.3.desc:0 "You didn't believe the reports when you read them, but then a soldier confirmed it, said he'd seen it for himself, a large scaled bird creature flying overhead towards the volcano. You should send someone to check it out."
+ Mythical_events.3.a:0 "It couldn't be? We simply must find out what it is at any cost."
+ Mythical_events.3.b:0 "You there, boy! Go find out where that beast is headed."
+ Mythical_events.3.c:0 "Round up some men to go and hunt the thing!"
+ Mythical_events.3.d:0 "Nevermind, I'm sure it was nothing."
+ Mythical_events.4.t:0 "The Dragon's Dwelling"
+ Mythical_events.4.desc:0 "You stand here, Mighty [ROOT.GetCountry.GetRulerTitle], at the foot of a mountain that spews fire from it's peak, steely in your resolve, you see the dark hole about half way up the hill, the occasional curl of smoke billowing from within, you have found the missing livestock, slaughtered, some burnt to a crisp, some merely singed, all however, were half eaten. It's a nerve-wracking sight for even the hardiest of men."
+ Mythical_events.4.a:0 "Give it the gemstones, perhaps then it will join us."
+ Mythical_events.4.b:0 "Bring me the greatest orator in the land, let them talk the dragon down from the hill!"
+ 
+ 
+
+ ####################################################
+ #Mythical Decisions
+ ####################################################
+
+ search_for_creature:0 "Search for a mystical Creature"
+ search_for_creature_desc:0 "Tales have been told of a giant fire-breathing lizard that lives in a volcano, sway it and it may consider joining your cause." 
+
+ ####################################################
+ #Mythical Modifiers
+ ####################################################
+
+ dragon_swayed:0 "Empty Dragon Nest"
+ desc_dragon_swayed:0 "The only things left behind; scales, corpses, and a few scattered gemstones."
+ dragon_lair_found:0 "A Dragon's Lair"
+ desc_dragon_lair_found:0 "A Dragon has made it's home here."
+ missing_livestock:0 "Missing Livestock"
+ desc_missing_livestock:0 "The Livestock in this province is missing."
+ dragon_ate_gems:0 "Gemstones eaten"
+ desc_dragon_ate_gems:0 "The Gemstones here have been consumed by a dragon, only rocks remain."
+ sacrificed_pops:0 "Sacrificed Population"
+ desc_sacrificed_pops:0 "This territory is in uproar. How dare you lead them to their deaths!"
+ 
+
+ ####################################################
+ #Mythical Units
+ ####################################################
+
+ dragon:0 "Dragon"
+ dragon_desc:0 "A powerful winged beast capable of breathing fire and tearing down entire armies singlehandedly."
+ dragon_noculturegroup:0 "Dragon"
+
+
+ ####################################################
+ #Mythical Culture
+ ####################################################
+
+ draconic:0 "Draconic"
+ draconic:0 "Draconic"
+ dracophilian:0 "Dracophilian"
+ Puff:0 "Puff"
+ Mr_Barbarian:0 "Dragon Cultists"
+ Jill:0 "Jill"
+ TheMagicDragon:0 "The Magic Dragon"
+
+
+ ####################################################
+ #Mythical Tooltips
+ ####################################################
+ NO_REASON_BUILD_TT:0 "You have no reason to build this."

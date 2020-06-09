@@ -1,0 +1,27 @@
+﻿draconic = {	
+	color = hsv { 0.2 1.0 0.5 }
+
+	male_names = {
+		Puff
+	}
+	female_names = {
+		Jill
+	}
+	family = {
+		The_Magic_Dragon
+	}
+	
+	culture = {
+		draconic = {}
+		dracophilian = {}
+	}
+	
+	barbarian_names = { 
+		Mr_Barbarian
+	}
+	
+	graphical_culture = persian_gfx
+	ethnicities = {
+		10 = levantine
+	}
+}

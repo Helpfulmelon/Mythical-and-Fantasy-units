@@ -1,0 +1,40 @@
+﻿dragon = {
+	army = yes
+	enable = no
+	
+	allow = {
+		trade_good_surplus = {target = gems value > 0}
+	}
+	
+	
+	maneuver = 5
+	movement_speed = 10
+	build_time = 730
+	
+	light_infantry = 2
+	heavy_infantry = 2
+	heavy_cavalry = 1.5
+	warelephant = 1.4
+	horse_archers = 1.2
+	archers = 2
+	chariots = 1.5
+	light_cavalry = 1.2
+	camels = 1.5
+	supply_train = 5.0
+
+	morale_damage_done = 2.0
+	strength_damage_taken = 0.5
+	morale_damage_taken = 0.1
+	
+	build_cost = {
+	
+		gold = 73
+		manpower = 1000}
+	
+	
+	
+	food_consumption = 0.6
+	food_storage = 5
+	attrition_weight = 5.0	
+	attrition_loss = 0.15
+}

@@ -1,0 +1,25 @@
+﻿replace_commander = { 
+    scope = unit
+
+    is_valid = {
+      OR = {
+        has_commander = no
+        NOT = { 
+          commander = {
+          has_culture = draconic
+          }
+        }
+      }
+    }
+}
+merge_unit = { 
+  scope = unit
+
+  is_valid = {
+      NOT = {
+        any_sub_unit= {
+          subunit = dragon
+         } 
+      }
+  }
+}
