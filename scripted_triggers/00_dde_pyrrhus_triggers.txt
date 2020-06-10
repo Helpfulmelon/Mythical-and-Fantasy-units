@@ -1,0 +1,73 @@
+﻿is_diadochus_trigger = {
+	OR = {
+		tag = MAC
+		tag = EGY
+		tag = PRY
+		tag = SEL
+		tag = TRE
+	}
+}
+
+pyrrhus_wife_finder_trigger = {
+	any_living_character = {
+		is_ruler = no
+		is_female = yes
+		age >= 16
+		age <= 30
+		is_married = no
+		prisoner = no
+		from_ruler_family = yes
+		employer = root
+		is_at_location = root.capital_scope
+	}
+}
+
+pyrrhus_truce_trigger = {
+	OR = {
+		AND = {
+			tag = SEL
+			OR = {
+				has_truce_with = MAC
+				has_truce_with = PRY
+				has_truce_with = TRE
+				has_truce_with = EGY 
+			}
+		}
+		AND = {
+			tag = MAC
+			OR = {
+				has_truce_with = SEL
+				has_truce_with = PRY
+				has_truce_with = TRE
+				has_truce_with = EGY 
+			}
+		}
+		AND = {
+			tag = PRY
+			OR = {
+				has_truce_with = MAC
+				has_truce_with = SEL
+				has_truce_with = TRE
+				has_truce_with = EGY 
+			}
+		}
+		AND = {
+			tag = TRE
+			OR = {
+				has_truce_with = MAC
+				has_truce_with = PRY
+				has_truce_with = SEL
+				has_truce_with = EGY 
+			}
+		}
+		AND = {
+			tag = EGY
+			OR = {
+				has_truce_with = MAC
+				has_truce_with = PRY
+				has_truce_with = TRE
+				has_truce_with = SEL 
+			}
+		}
+	}
+}

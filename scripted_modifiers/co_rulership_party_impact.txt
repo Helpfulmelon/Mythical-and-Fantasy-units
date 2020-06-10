@@ -1,0 +1,858 @@
+﻿# Co-Rulership - Character
+
+military_party_co_ruler_modifier = {
+	modifier = { 
+		factor = 1.75
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = military_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = military_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = military_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = military_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = military_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = military_party
+					}
+				}
+			}
+			NOT = {
+				root.current_ruler = {
+					party = military_party
+				}
+				root.current_co_ruler = {
+					party = military_party
+				}
+			}
+		}
+	}
+}
+
+civic_party_co_ruler_modifier = {
+	modifier = { 
+		factor = 1.75
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = civic_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = civic_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = civic_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = civic_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = civic_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = civic_party
+					}
+				}
+			}
+			NOT = {
+				root.current_ruler = {
+					party = civic_party
+				}
+				root.current_co_ruler = {
+					party = civic_party
+				}
+			}
+		}
+	}
+}
+
+mercantile_party_co_ruler_modifier = {
+	modifier = { 
+		factor = 1.75
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = mercantile_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = mercantile_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = mercantile_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = mercantile_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = mercantile_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = mercantile_party
+					}
+				}
+			}
+			NOT = {
+				root.current_ruler = {
+					party = mercantile_party
+				}
+				root.current_co_ruler = {
+					party = mercantile_party
+				}
+			}
+		}
+	}
+}
+
+religious_party_co_ruler_modifier = {
+	modifier = { 
+		factor = 1.75
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = religious_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = religious_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = religious_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = religious_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = religious_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = religious_party
+					}
+				}
+			}
+			NOT = {
+				root.current_ruler = {
+					party = religious_party
+				}
+				root.current_co_ruler = {
+					party = religious_party
+				}
+			}
+		}
+	}
+}
+
+populist_party_co_ruler_modifier = {
+	modifier = { 
+		factor = 1.75
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = populist_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = root.current_co_ruler 
+					scope:target = {
+						party = populist_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = populist_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = populist_party
+					}
+				}
+			}
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = populist_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			trigger_if = {
+				limit = {
+					exists = scope:target
+				}
+				NOT = { 
+					scope:target = current_co_ruler 
+					scope:target = {
+						party = populist_party
+					}
+				}
+			}
+			NOT = {
+				root.current_ruler = {
+					party = populist_party
+				}
+				root.current_co_ruler = {
+					party = populist_party
+				}
+			}
+		}
+	}
+}
+
+# Co-Rulership - Country
+
+military_party_co_ruler_country_modifier = {
+	modifier = { 
+		factor = 1.25
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = military_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = military_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = military_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			NOT = {
+				root.current_ruler = {
+					party = military_party
+				}
+				root.current_co_ruler = {
+					party = military_party
+				}
+			}
+		}
+	}
+}
+
+civic_party_co_ruler_country_modifier = {
+	modifier = { 
+		factor = 1.25
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = civic_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = civic_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = civic_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			NOT = {
+				root.current_ruler = {
+					party = civic_party
+				}
+				root.current_co_ruler = {
+					party = civic_party
+				}
+			}
+		}
+	}
+}
+
+mercantile_party_co_ruler_country_modifier = {
+	modifier = { 
+		factor = 1.25
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = mercantile_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = mercantile_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = mercantile_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			NOT = {
+				root.current_ruler = {
+					party = mercantile_party
+				}
+				root.current_co_ruler = {
+					party = mercantile_party
+				}
+			}
+		}
+	}
+}
+
+religious_party_co_ruler_country_modifier = {
+	modifier = { 
+		factor = 1.25
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = religious_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = religious_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = religious_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			NOT = {
+				root.current_ruler = {
+					party = religious_party
+				}
+				root.current_co_ruler = {
+					party = religious_party
+				}
+			}
+		}
+	}
+}
+
+populist_party_co_ruler_country_modifier = {
+	modifier = { 
+		factor = 1.25
+		custom_tooltip = {
+			text = "party_ruling_tooltip"
+			has_co_ruler_government = yes
+			root.current_ruler = {
+				party = populist_party
+			}
+		}
+	}
+	modifier = {
+		factor = { 
+			value = 1
+			add = {
+				value = root.current_co_ruler.loyalty
+				divide = 100
+				divide = 4
+			}
+			max = 1.25
+		}
+		custom_tooltip = {
+			text = "co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = no
+				party = populist_party
+			}
+		}
+	}
+	modifier = {
+		factor = {
+			value = 1
+			subtract = {
+				value = 33
+				subtract = root.current_co_ruler.loyalty
+				divide = 100
+			}
+			min = 0.80
+		}
+		custom_tooltip = {
+			text = "disloyal_co_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			root.current_co_ruler = {
+				is_disloyal = yes
+				party = populist_party
+			}
+		}
+	}
+	modifier = {
+		factor = 0.95
+		custom_tooltip = {
+			text = "neither_ruler_party_tooltip"
+			has_co_ruler_government = yes
+			exists = root.current_co_ruler
+			NOT = {
+				root.current_ruler = {
+					party = populist_party
+				}
+				root.current_co_ruler = {
+					party = populist_party
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+﻿desecrate_holy_site_button = {
+    scope = province
+	
+	confirm_title = "desecrate_holy_site_confirm_title"	
+	confirm_text = "desecrate_holy_site_confirm_desc"
+	
+	saved_scopes = {
+		player
+	}
+    is_shown = { # Can be omitted as always true
+      always = yes
+    } 
+	ai_is_valid = {
+		always = no #TODO PWN
+	}
+	is_valid = {
+		trigger_if = {
+			limit = {
+				is_holy_site = no
+			}
+			is_holy_site = yes
+		}
+	}
+	effect = {
+		custom_tooltip = "desecration_prov_deity_rel"
+		desecrate_effect = yes
+	} 
+}

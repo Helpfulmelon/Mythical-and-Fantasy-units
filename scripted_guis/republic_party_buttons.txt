@@ -1,0 +1,289 @@
+﻿republic_party_button = {
+    scope = character
+	saved_scopes = {
+		player
+	}
+    is_shown = { # Can be omitted as always true
+      
+    }
+	ai_is_valid = {
+		trigger_if = {
+			limit = {
+				party = military_party
+			}
+			scope:player = {
+				war = yes
+				populist_party_support < 20
+				#military_power >= 1000
+				NOT = {
+					has_country_modifier = empowered_military_party_gui_mod
+				}
+			}
+		}
+		trigger_else = {
+			always = no
+		}
+	}
+    is_valid = {
+		trigger_if = {
+			limit = {
+				party = civic_party
+				scope:player = {
+					NOT = {
+						can_pay_price = price_civic_party_action
+					}
+				}
+			}
+			hidden:scope:player = {
+				can_pay_price = price_civic_party_action
+			}
+		}
+		trigger_else_if = {
+			limit = {
+				party = military_party
+				scope:player = {
+					NOT = {
+						can_pay_price = price_military_party_action
+					}
+				}
+			}
+			hidden:scope:player = {
+				can_pay_price = price_military_party_action
+			}
+		}
+		trigger_else_if = {
+			limit = {
+				party = mercantile_party
+				scope:player = {
+					NOT = {
+						can_pay_price = price_mercantile_party_action
+					}
+				}
+			}
+			hidden:scope:player = {
+				can_pay_price = price_mercantile_party_action
+			}
+		}
+		trigger_else_if = {
+			limit = {
+				party = religious_party
+				scope:player = {
+					NOT = {
+						can_pay_price = price_religious_party_action
+					}
+				}
+			}
+			hidden:scope:player = {
+				can_pay_price = price_religious_party_action
+			}
+		}
+		trigger_else_if = {
+			limit = {
+				party = populist_party
+				scope:player = {
+					NOT = {
+						can_pay_price = price_populist_party_action
+					}
+				}
+			}
+			hidden:scope:player = {
+				can_pay_price = price_populist_party_action
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = populist_party
+			}
+			scope:player.current_ruler = {
+				party = populist_party
+			}
+		}
+		####
+		trigger_if = {
+			limit = {
+				party = civic_party
+				scope:player = {
+					has_country_modifier = empowered_civic_party_gui_mod
+				}
+			}
+			hidden:scope:player = {
+				NOT = {
+					has_country_modifier = empowered_civic_party_gui_mod
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = military_party
+				scope:player = {
+					has_country_modifier = empowered_military_party_gui_mod
+				}
+			}
+			hidden:scope:player = {
+				NOT = {
+					has_country_modifier = empowered_military_party_gui_mod
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = mercantile_party
+				scope:player = {
+					has_country_modifier = empowered_mercantile_party_gui_mod
+				}
+			}
+			hidden:scope:player = {
+				NOT = {
+					has_country_modifier = empowered_mercantile_party_gui_mod
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = religious_party
+				scope:player = {
+					has_country_modifier = empowered_religious_party_gui_mod
+				}
+			}
+			hidden:scope:player = {
+				NOT = {
+					has_country_modifier = empowered_religious_party_gui_mod
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = populist_party
+				scope:player = {
+					has_country_modifier = empowered_populist_party_gui_mod
+				}
+			}
+			hidden:scope:player = {
+				NOT = {
+					has_country_modifier = empowered_populist_party_gui_mod
+				}
+			}
+		}
+    }
+    effect = {
+		if = {
+			limit = {
+				party = civic_party
+			}
+			scope:player = {
+				pay_price = price_civic_party_action
+				add_country_modifier = {
+					name = empowered_civic_party_gui_mod
+					duration = 1825
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				party = military_party
+			}
+			scope:player = {
+				pay_price = price_military_party_action
+				add_country_modifier = {
+					name = empowered_military_party_gui_mod
+					duration = 1825
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				party = mercantile_party
+			}
+			scope:player = {
+				pay_price = price_mercantile_party_action
+				add_country_modifier = {
+					name = empowered_mercantile_party_gui_mod
+					duration = 1825
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				party = religious_party
+			}
+			scope:player = {
+				pay_price = price_religious_party_action
+				add_country_modifier = {
+					name = empowered_religious_party_gui_mod
+					duration = 1825
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				party = populist_party
+			}
+			scope:player = {
+				pay_price = price_populist_party_action
+				add_country_modifier = {
+					name = empowered_populist_party_gui_mod
+					duration = 1825
+				}
+			}
+		}
+	}
+}
+
+republic_party_button_echo = {
+	scope = character
+	saved_scopes = {
+		player
+	}
+	ai_is_valid = {
+		always = no
+	}
+	is_shown = {
+		trigger_if = {
+			limit = {
+				party = civic_party
+			}
+			scope:player = {
+				has_country_modifier = empowered_civic_party_gui_mod
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = military_party
+			}
+			scope:player = {
+				has_country_modifier = empowered_military_party_gui_mod
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = mercantile_party
+			}
+			scope:player = {
+				has_country_modifier = empowered_mercantile_party_gui_mod
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = religious_party
+			}
+			scope:player = {
+				has_country_modifier = empowered_religious_party_gui_mod
+			}
+		}
+		trigger_if = {
+			limit = {
+				party = populist_party
+			}
+			scope:player = {
+				has_country_modifier = empowered_populist_party_gui_mod
+			}
+		}
+	}
+	is_valid = {
+	
+	}
+	effect = {
+	
+	}
+	
+}
