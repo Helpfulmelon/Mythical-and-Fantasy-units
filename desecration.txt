@@ -1,0 +1,54 @@
+﻿namespace = desecration
+
+##################################################################
+# Desecration
+##################################################################
+
+desecration.1 = {
+	type = province_event
+	title = "desecration.1.t"
+	desc = "desecration.1.desc"
+	
+	picture = looting
+	
+	goto_location = ROOT
+	
+	option = {
+		name = "desecration.1.a"
+		owner = { add_opinion = { target = scope:sacker modifier = sacked_our_holy_site } }
+	}
+
+}
+ 
+desecration.2 = {
+	type = country_event
+	title = "desecration.2.t"
+	desc = "desecration.2.desc"
+	
+	picture = looting
+	 
+	option = {
+		name = "desecration.2.a"
+		custom_tooltip = desecration_opinion_own
+	}
+} 
+
+desecration.3 = {
+	type = country_event
+	title = "desecration.3.t"
+	desc = "desecration.3.desc"
+	picture = looting
+	goto_location = scope:shrine_location
+	
+	option = {
+		name = "desecration.3.a"
+		add_opinion = { target = scope:sacker modifier = sacked_holy_site }
+	}
+	option = {
+		name = "desecration.3.b"
+		scope:sacker = {
+			add_opinion = { target = ROOT modifier = overlooked_sacking }
+		}
+	}
+	
+}

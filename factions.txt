@@ -1,0 +1,1802 @@
+﻿namespace = faction
+
+faction.1 = {
+	type = country_event
+	title = "faction.1.t"
+	desc = "faction.1.desc"
+	picture = senator_conversing
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:faction_target
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		any_character = {
+			is_party_leader = yes
+			is_ruler = no
+			prisoner = no
+			country = employer
+		}
+	}
+	
+	immediate = { 
+		random_character = {
+			limit = {
+				is_party_leader = yes
+				is_ruler = no
+				prisoner = no
+				country = employer
+			}
+			weight = {
+				title_importance_modifier = yes
+			}
+			save_scope_as = faction_target
+		}
+		set_local_variable = {
+			name = faction_issue
+			value = {
+				integer_range = { min = 1 max = 3 }
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.1.a" 
+		faction_gift_proposal = yes
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				scope:faction_target = {
+					add_party_support_small_effect = yes
+				}
+			}
+		}
+		current_ruler = {
+			taken_bribe_effect = yes
+		}
+	}
+	
+	option = {
+		name = "faction.1.b" 
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_loyalty = loyalty_faction_suggestion_refused
+				add_prominence = subtract_prominence_medium
+			}
+		}
+	}
+}
+
+faction.2 = {
+	type = country_event
+	title = "faction.2.t"
+	desc = "faction.2.desc"
+	picture = senator_conversing
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:faction_target
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		any_character = {
+			is_party_leader = yes
+			is_ruler = no
+			prisoner = no
+			country = employer
+		}
+	}
+	
+	immediate = { 
+		random_character = { 
+			limit = {
+				is_party_leader = yes
+				is_ruler = no
+				prisoner = no
+				country = employer
+			}
+			weight = {
+				title_importance_modifier = yes
+			}
+			save_scope_as = faction_target
+		}
+		set_local_variable = {
+			name = faction_issue
+			value = {
+				integer_range = { min = 1 max = 3 }
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.2.a" 
+		faction_gift_proposal = yes
+		current_ruler = {
+			taken_bribe_effect = yes
+		}
+	}
+	
+	option = {
+		name = "faction.2.b" 
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_loyalty = loyalty_faction_suggestion_refused
+				add_prominence = subtract_prominence_medium
+			}
+		}
+	}
+}
+
+faction.3 = {
+	type = country_event
+	title = "faction.3.t"
+	desc = "faction.3.desc"
+	picture = senate_debate
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:faction_target
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		any_character = {
+			is_party_leader = yes
+			is_ruler = no
+			prisoner = no
+			country = employer
+		}
+	}
+	
+	immediate = { 
+		random_character = {
+			limit = {
+				is_party_leader = yes
+				is_ruler = no
+				prisoner = no
+				country = employer
+			}
+			weight = {
+				title_importance_modifier = yes
+			}
+			save_scope_as = faction_target
+		}
+		set_local_variable = {
+			name = faction_issue
+			value = {
+				integer_range = { min = 1 max = 3 }
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.3.a" 
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_favor_party_effect = yes
+				root.current_ruler = {
+					add_party_support_large_effect = yes
+				}
+			}
+		}
+		current_ruler = {
+			taken_bribe_effect = yes
+		}
+	}
+	
+	option = {
+		name = "faction.3.b" 
+		current_ruler = {
+			add_popularity = subtract_popularity_medium
+		} 
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_loyalty = loyalty_faction_compromise_refused
+			}
+		}
+	}
+}
+
+faction.4 = {
+	type = country_event
+	title = "faction.4.t"
+	desc = "faction.4.desc"
+	picture = greek_philosophers
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:faction_target
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		any_character = {
+			is_party_leader = yes
+			is_ruler = no
+			NOT = {
+				is_same_party_as = root.current_ruler
+			}
+			is_friend = root.current_ruler
+			NOT = {
+				has_variable = faction_4_toggle_char
+			}
+		}
+	}
+	
+	immediate = { 
+		random_character = {
+			limit = {
+				is_party_leader = yes
+				is_ruler = no
+				NOT = {
+					is_same_party_as = root.current_ruler
+				}
+				is_friend = root.current_ruler
+			}
+			save_scope_as = faction_target
+			set_variable = {
+				name = faction_4_toggle_char
+				days = 2200
+			}
+		}
+		set_local_variable = {
+			name = faction_issue
+			value = {
+				integer_range = { min = 1 max = 3 }
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.4.a" 
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_favor_party_effect = yes
+				add_loyalty = loyalty_faction_favors_returned
+			}
+		}
+		current_ruler = {
+			taken_bribe_effect = yes
+		}
+	}
+	
+	option = {
+		name = "faction.4.b" 
+		current_ruler = {
+			if = {
+				limit = {
+					is_alive = yes
+					is_friend = scope:faction_target
+				}
+				remove_friend = scope:faction_target
+				if = {
+					limit = {
+						can_get_rivals = yes
+						scope:faction_target = {
+							can_get_rivals = yes
+						}
+					}
+					add_rival = scope:faction_target
+				}
+			}
+		}
+	}
+}
+
+faction.5 = {
+	type = country_event
+	title = "faction.5.t"
+	desc = "faction.5.desc"
+	picture = war_chest
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:faction_target
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+	}
+	
+	immediate = { 
+		random_character = {
+			limit = {
+				is_party_leader = yes
+				is_ruler = no
+			}
+			weight = {
+				title_importance_modifier = yes
+			}
+			save_scope_as = faction_target
+		}
+		set_local_variable = {
+			name = faction_issue
+			value = {
+				integer_range = { min = 1 max = 3 }
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.5.a" 
+		faction_gift_proposal = yes
+		current_ruler = {
+			taken_bribe_effect = yes
+		}
+	}
+	
+	option = {
+		highlight = yes
+		name = "faction.5.b" 
+		custom_tooltip = "generous_tooltip"
+		trigger = {
+			current_ruler = {
+				has_trait = generous
+			}
+		}
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_loyalty = loyalty_faction_bribe_returned
+				add_gold = {
+					value = {
+						integer_range = { min = 100 max = 300 }
+					}
+				}
+			} 
+		}
+	}  
+	 
+	option = {
+		name = "faction.5.c" 
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_loyalty = loyalty_faction_suggestion_refused
+				root = {
+					remove_stability_effect = yes
+				}
+			}
+		}
+	}
+	
+	option = {
+		highlight = yes
+		name = "faction.5.d" 
+		trigger = {
+			current_ruler = {
+				charisma >= 8
+			}
+		}
+		custom_tooltip = "high_charisma_tooltip"
+		scope:faction_target = {
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				add_loyalty = loyalty_faction_convinced
+			}
+		} 
+	}
+}
+
+faction.6 = {
+	type = country_event
+	title = "faction.6.t"
+	desc = "faction.6.desc"
+	picture = senator_conversing
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:favor_party_leader
+	
+	trigger = {  
+		is_republic = yes
+		exists = current_ruler
+		OR = {
+			AND = {
+				has_party = party:military_party
+				has_variable = military_favor
+				var:military_favor > 0
+				any_character = {
+					party = military_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:civic_party
+				has_variable = civic_favor
+				var:civic_favor > 0
+				any_character = {
+					party = civic_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:mercantile_party
+				has_variable = mercantile_favor
+				var:mercantile_favor > 0
+				any_character = {
+					party = mercantile_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:religious_party
+				has_variable = religious_favor
+				var:religious_favor > 0
+				any_character = {
+					party = religious_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:populist_party
+				has_variable = populist_favor
+				var:populist_favor > 0
+				any_character = {
+					party = populist_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_favor_leader_effect = yes
+		}
+		set_local_variable = {
+			name = spend_random_favor
+			value = {
+				integer_range = { min = 1 max = 3 }
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.6.a" 
+		scope:favor_party_leader = { 
+			remove_favor_event_effect = yes  
+			party_favor_request_effect = yes
+		}
+	}
+	
+	option = {
+		name = "faction.6.b"
+		scope:favor_party_leader = {
+			add_loyalty = loyalty_faction_refused_repayment
+		}
+	}
+	
+	option = {
+		name = "faction.6.c"
+		scope:favor_party_leader = {
+			remove_favors_stability_hit_effect = yes
+			remove_all_favors_effect = yes
+		} 
+	}
+	
+	option = {
+		highlight = yes
+		name = "faction.6.d"
+		trigger = {
+			current_ruler = {
+				has_trait = orator
+			}
+		}
+		custom_tooltip = "orator_tooltip"
+		remove_stability_effect = yes
+		scope:favor_party_leader = {
+			remove_all_favors_effect = yes
+		} 
+	}
+	
+	option = {
+		highlight = yes
+		name = "faction.6.e"
+		trigger = {
+			current_ruler = {
+				has_trait = cruel
+			}
+		}
+		custom_tooltip = "cruel_tooltip"
+		scope:favor_party_leader = {
+			remove_favors_tyranny_hit_effect = yes
+			remove_all_favors_effect = yes
+		} 
+	}
+	
+}
+
+faction.7 = {
+	type = country_event
+	title = "faction.7.t"
+	desc = "faction.7.desc"
+	picture = senate_debate
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:favor_party_leader
+	
+	trigger = {  
+		is_republic = yes
+		exists = current_ruler
+		OR = {
+			AND = {
+				has_party = party:military_party
+				has_variable = military_favor
+				var:military_favor > 0
+				any_character = {
+					party = military_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:civic_party
+				has_variable = civic_favor
+				var:civic_favor > 0
+				any_character = {
+					party = civic_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:mercantile_party
+				has_variable = mercantile_favor
+				var:mercantile_favor > 0
+				any_character = {
+					party = mercantile_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:religious_party
+				has_variable = religious_favor
+				var:religious_favor > 0
+				any_character = {
+					party = religious_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:populist_party
+				has_variable = populist_favor
+				var:populist_favor > 0
+				any_character = {
+					party = populist_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_favor_leader_effect = yes
+		}
+		set_local_variable = {
+			name = spend_random_favor
+			value = {
+				integer_range = { min = 1 max = 3 }
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.7.a" 
+		scope:favor_party_leader = { 
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				remove_favor_event_effect = yes  
+				party_favor_request_effect = yes
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.7.b"
+		scope:favor_party_leader = {
+			add_loyalty = loyalty_faction_refused_repayment
+			remove_favor_event_effect = yes
+		}
+		current_ruler = {
+			add_popularity = subtract_popularity_medium
+		}
+	}
+	
+}
+
+faction.8 = {
+	type = country_event
+	title = "faction.8.t"
+	desc = "faction.8.desc"
+	picture = roman_trial
+	
+	left_portrait = root.current_ruler
+	left_portrait = scope:current_tribune_target
+	right_portrait = scope:favor_party_leader
+	right_portrait = scope:new_tribune_target
+	
+	trigger = {  
+		is_republic = yes
+		exists = current_ruler
+		OR = {
+			AND = {
+				has_party = party:military_party
+				has_variable = military_favor
+				var:military_favor >= 3
+				any_character = {
+					party = military_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:civic_party
+				has_variable = civic_favor
+				var:civic_favor >= 3
+				any_character = {
+					party = civic_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:mercantile_party
+				has_variable = mercantile_favor
+				var:mercantile_favor >= 3
+				any_character = {
+					party = mercantile_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:religious_party
+				has_variable = religious_favor
+				var:religious_favor >= 3
+				any_character = {
+					party = religious_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_party = party:populist_party
+				has_variable = populist_favor
+				var:populist_favor >= 3
+				any_character = {
+					party = populist_party
+					is_party_leader = yes
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+		}
+		any_character = {
+			has_office = office_tribune_of_the_treasury
+			is_same_party_as = root.current_ruler
+			char_valid_for_country_events_trigger = yes
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_favor_leader_3_effect = yes
+		}
+		random_character = {
+			limit = {
+				has_office = office_tribune_of_the_treasury
+				is_same_party_as = root.current_ruler
+				char_valid_for_country_events_trigger = yes
+			}
+			save_scope_as = current_tribune_target
+		}
+		if = {
+			limit = {
+				any_character = {
+					char_valid_for_country_events_trigger = yes
+					is_same_party_as = scope:favor_party_leader
+					trigger_if = {
+						limit = {
+							root = {
+								gender_equality = no
+							}
+						}
+						is_female = no
+					}
+					NOT = {
+						this = scope:favor_party_leader
+					}
+				}
+			}
+			random_character =  {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+					is_same_party_as = scope:favor_party_leader
+					trigger_if = {
+						limit = {
+							root = {
+								gender_equality = no
+							}
+						}
+						is_female = no
+					}
+					NOT = {
+						this = scope:favor_party_leader
+					}
+				}
+				weight = {
+					title_importance_modifier = yes
+				}
+				save_scope_as = new_tribune_target
+			}
+		}
+		else_if = {
+			limit = {
+				any_character = {
+					char_valid_for_country_events_trigger = yes
+					can_hold_office = office_tribune_of_the_treasury
+					NOR = {
+						this = scope:favor_party_leader
+						this = root.current_ruler
+						this = scope:current_tribune_target
+					}
+				}
+			}
+			random_character = {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+					can_hold_office = office_tribune_of_the_treasury
+					NOR = {
+						this = scope:favor_party_leader
+						this = root.current_ruler
+						this = scope:current_tribune_target
+					}
+				}
+				weight = {
+					title_importance_modifier = yes
+				}
+				save_scope_as = new_tribune_target
+			}
+		}
+		else = {
+			scope:favor_party_leader = {
+				save_scope_as = new_tribune_target
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.8.a" 
+		scope:favor_party_leader = { 
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				remove_favor_event_3_effect = yes
+			}
+		}
+		scope:current_tribune_target = {
+			if = {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+					has_office = office_tribune_of_the_treasury
+				}
+				remove_office = office_tribune_of_the_treasury
+			}
+			else_if = {
+				limit = {
+					root = {
+						any_character = {
+							has_office = office_pontifex
+							NOT = { this = scope:new_tribune_target }
+						}
+					}
+				}
+				root = {
+					random_character = {
+						limit = {
+							has_office = office_pontifex
+							NOT = { this = scope:current_tribune_target }
+						}
+						remove_office = office_pontifex
+					}
+				}
+			}
+		}
+		scope:new_tribune_target = {
+			if = {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+				}
+				give_office = office_tribune_of_the_treasury
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.8.b"
+		scope:favor_party_leader = {
+			add_loyalty = loyalty_faction_refused_repayment
+			remove_favor_event_effect = yes
+		}
+		current_ruler = {
+			add_popularity = subtract_popularity_medium
+		}
+	}
+	
+}
+
+faction.9 = {
+	type = country_event
+	title = "faction.9.t"
+	desc = "faction.9.desc"
+	picture = senator_conversing
+	
+	left_portrait = root.current_ruler
+	left_portrait = scope:current_tribune_target
+	left_portrait = scope:pontifex_minimus
+	right_portrait = scope:favor_party_leader
+	right_portrait = scope:new_tribune_target
+	
+	trigger = {  
+		is_republic = yes
+		exists = current_ruler
+		OR = { 
+			AND = {
+				has_variable = military_favor
+				var:military_favor >= 3
+				any_character = {
+					is_party_leader = yes
+					party = military_party
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_variable = civic_favor
+				var:civic_favor >= 3
+				any_character = {
+					is_party_leader = yes
+					party = civic_party
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_variable = mercantile_favor
+				var:mercantile_favor >= 3
+				any_character = {
+					is_party_leader = yes
+					party = mercantile_party
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_variable = religious_favor
+				var:religious_favor >= 3
+				any_character = {
+					is_party_leader = yes
+					party = religious_party
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+			AND = {
+				has_variable = populist_favor
+				var:populist_favor >= 3
+				any_character = {
+					is_party_leader = yes
+					party = populist_party
+					NOT = {
+						is_same_party_as = root.current_ruler
+					}
+				}
+			}
+		}
+		any_character = {
+			has_office = office_tribune_of_the_treasury
+			is_same_party_as = root.current_ruler
+			char_valid_for_country_events_trigger = yes
+			employer = root
+		}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			random_favor_leader_3_effect = yes
+		}
+		random_character = {
+			limit = {
+				has_office = office_tribune_of_the_treasury
+				is_same_party_as = root.current_ruler
+				char_valid_for_country_events_trigger = yes
+			}
+			save_scope_as = current_tribune_target
+		}
+		if = {
+			limit = {
+				any_character = {
+					char_valid_for_country_events_trigger = yes
+					is_same_party_as = scope:favor_party_leader
+					is_adult = yes
+					can_hold_office = office_tribune_of_the_soldiers
+					NOT = {
+						this = scope:favor_party_leader
+					}
+				}
+			}
+			random_character =  {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+					is_same_party_as = scope:favor_party_leader
+					is_adult = yes
+					can_hold_office = office_tribune_of_the_soldiers
+					NOT = {
+						this = scope:favor_party_leader
+					}
+				}
+				weight = {
+					title_importance_modifier = yes
+				}
+				save_scope_as = new_tribune_target
+			}
+		}
+		else_if = {
+			limit = {
+				any_character = {
+					char_valid_for_country_events_trigger = yes
+					trigger_if = {
+						limit = {
+							root = {
+								gender_equality = no
+							}
+						}
+						is_female = no
+					}
+					NOR = {
+						this = scope:favor_party_leader
+						this = root.current_ruler
+						this = scope:current_tribune_target
+					}
+				}
+			}
+			random_character = {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+					trigger_if = {
+						limit = {
+							root = {
+								gender_equality = no
+							}
+						}
+						is_female = no
+					}
+					NOR = {
+						this = scope:favor_party_leader
+						this = root.current_ruler
+						this = scope:current_tribune_target
+					}
+				}
+				weight = {
+					title_importance_modifier = yes
+				}
+				save_scope_as = new_tribune_target
+			}
+		}
+		else = {
+			scope:favor_party_leader = {
+				save_scope_as = new_tribune_target
+			}
+		}
+		if = {
+			limit = {
+				current_ruler = {
+					finesse >= 8
+				}
+				any_character = {
+					has_office = office_pontifex
+					NOT = {
+						is_same_party_as = scope:favor_party_leader
+					}
+				}
+			}
+			random_character = {
+				limit = {
+					has_office = office_pontifex
+					NOT = {
+						is_same_party_as = scope:favor_party_leader
+					}
+				}
+				save_scope_as = pontifex_minimus
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.9.a" 
+		scope:favor_party_leader = { 
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				remove_favor_event_3_effect = yes
+			}
+		}
+		scope:current_tribune_target = {
+			if = {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+					has_office = office_tribune_of_the_soldiers
+				}
+				remove_office = office_tribune_of_the_soldiers
+			}
+		}
+		scope:new_tribune_target = {
+			if = {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+					employer = root
+				}
+				give_office = office_tribune_of_the_soldiers
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.9.b"
+		scope:favor_party_leader = {
+			add_loyalty = loyalty_faction_refused_repayment
+			remove_favor_event_effect = yes
+		}
+		current_ruler = {
+			add_popularity = subtract_popularity_medium
+		}
+		remove_stability_effect = yes
+	}
+	
+	option = {
+		highlight = yes
+		name = "faction.9.c"
+		custom_tooltip = "high_finesse_tooltip"
+		trigger = {
+			current_ruler = {
+				finesse >= 8
+			}
+			scope:favor_party_leader = {
+				NOR = {
+					party = religious_party
+					NOT = {
+						target_is_valid_character = scope:pontifex_minimus
+					}
+				}
+			}
+		}
+		scope:favor_party_leader = { 
+			if = {
+				limit = {
+					is_alive = yes
+				}
+				remove_favor_event_3_effect = yes
+			}
+		}
+		if = {
+			limit = {
+				any_character = {
+					has_office = office_pontifex
+				}
+			}
+			random_character = {
+				limit = {
+					has_office = office_pontifex
+				}
+				remove_office = office_pontifex
+			}
+		}
+		scope:new_tribune_target = {
+			if = {
+				limit = {
+					char_valid_for_country_events_trigger = yes
+				}
+				give_office = office_pontifex
+			}
+		}
+	}
+}
+
+faction.10 = {
+	type = country_event
+	title = "faction.10.t"
+	desc = "faction.10.desc"
+	picture = greek_philosophers
+	
+	left_portrait = root.current_ruler
+	right_portrait = scope:faction_10_target
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		NOT = {
+			has_variable = faction_10_toggle
+		}
+		any_character = {
+			NOT = {
+				is_same_party_as = root.current_ruler
+			}
+			is_party_leader = no
+			has_any_office = no
+			age < 30
+			is_adult = yes
+			trigger_if = {
+				limit = {
+					root = {
+						gender_equality = no
+					}
+				}
+				is_female = no
+			}
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = faction_10_toggle
+			days = 3600
+		}
+		random_character = {
+			limit = {
+				NOT = {
+					is_same_party_as = root.current_ruler
+				}
+				is_party_leader = no
+				has_any_office = no
+				age < 30
+				is_adult = yes
+				trigger_if = {
+					limit = {
+						root = {
+							gender_equality = no
+						}
+					}
+					is_female = no
+				}
+			}
+			weight = {
+				title_importance_modifier = yes
+			}
+			save_scope_as = faction_10_target
+		}
+		hidden_effect = {
+			random_list = {
+				20 = {
+					trigger = {
+						NOR = {
+							scope:faction_10_target = {
+								party = military_party
+							}
+							root.current_ruler = {
+								party = military_party
+							}
+						}
+					}
+					set_local_variable = {
+						name = party_select
+						value = 1
+					}
+				}
+				20 = {
+					trigger = {
+						NOR = {
+							scope:faction_10_target = {
+								party = civic_party
+							}
+							root.current_ruler = {
+								party = civic_party
+							}
+						}
+					}
+					set_local_variable = {
+						name = party_select
+						value = 2
+					}
+				}
+				20 = {
+					trigger = {
+						NOR = {
+							scope:faction_10_target = {
+								party = mercantile_party
+							}
+							root.current_ruler = {
+								party = mercantile_party
+							}
+						}
+					}
+					set_local_variable = {
+						name = party_select
+						value = 3
+					}
+				}
+				20 = {
+					trigger = {
+						NOR = {
+							scope:faction_10_target = {
+								party = religious_party
+							}
+							root.current_ruler = {
+								party = religious_party
+							}
+						}
+					}
+					set_local_variable = {
+						name = party_select
+						value = 4
+					}
+				}
+				20 = {
+					trigger = {
+						NOR = {
+							scope:faction_10_target = {
+								party = populist_party
+							}
+							root.current_ruler = {
+								party = populist_party
+							}
+						}
+					}
+					set_local_variable = {
+						name = party_select
+						value = 5
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.10.a"
+		if = {
+			limit = {
+				local_var:party_select = 1
+			}
+			scope:faction_10_target=  {
+				add_party_conviction = {
+					party = military_party
+					value = 60
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				local_var:party_select = 2
+			}
+			scope:faction_10_target=  {
+				add_party_conviction = {
+					party = civic_party
+					value = 60
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				local_var:party_select = 3
+			}
+			scope:faction_10_target=  {
+				add_party_conviction = {
+					party = mercantile_party
+					value = 60
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				local_var:party_select = 4
+			}
+			scope:faction_10_target=  {
+				add_party_conviction = {
+					party = religious_party
+					value = 60
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				local_var:party_select = 5
+			}
+			scope:faction_10_target=  {
+				add_party_conviction = {
+					party = populist_party
+					value = 60
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.10.b"
+		#custom_tooltip = "charisma_comparison_tooltip"
+		add_political_influence = subtract_influence_small
+		scope:faction_10_target = {
+			add_ruler_conviction = {
+				value = 60
+			}
+		}
+	}
+	
+	option = {
+		name = "faction.10.c"
+		highlight = yes
+		trigger = {
+			current_ruler = {
+				has_trait = crafty
+			}
+		}
+		custom_tooltip = "crafty_tooltip"
+		scope:faction_10_target = {
+			add_ruler_conviction = {
+				value = 60
+			}
+		}
+	}
+	
+}
+
+#party scopes added here
+faction.11 = {
+	type = country_event 
+	title = "faction.11.t"
+	desc = "faction.11.desc"
+	picture = successors
+	
+	left_portrait = root.current_ruler
+	right_portrait = party:military_party.party_leader
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		NOT = {
+			has_variable = faction_favor_support_toggle
+		}
+		has_party = party:military_party
+		target_is_valid_character = party:military_party.party_leader
+		NOR = {
+			current_ruler = {
+				party = military_party
+			}
+			biggest_party = party:military_party
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = faction_favor_support_toggle
+			days = 750
+		}
+		party:military_party.party_leader = {
+			save_scope_as = faction_11_target
+		}
+	}
+	
+	option = {
+		name = "faction.11.a"
+		add_military_favor_effect = yes
+		add_military_senate_support_small_effect = yes
+		ai_chance = {
+			factor = 10
+		}
+	}
+	
+	option = {
+		name = "faction.11.b"
+		scope:faction_11_target = {
+			add_loyalty = loyalty_faction_suggestion_refused
+		}
+	}
+	
+	option = {
+		name = "faction.11.c"
+		add_military_favor_effect = yes
+		add_treasury = {
+			value = 0
+			subtract = root.has_monthly_income
+			multiply = 6
+		}
+		add_military_senate_support_large_effect = yes
+	}
+	
+}
+
+faction.12 = {
+	type = country_event 
+	title = "faction.12.t"
+	desc = "faction.12.desc"
+	picture = senator_conversing
+	
+	left_portrait = root.current_ruler
+	right_portrait = party:civic_party.party_leader
+	
+	trigger = {
+		exists = current_ruler
+		NOT = {
+			has_variable = faction_favor_support_toggle
+		}
+		has_party = party:civic_party
+		target_is_valid_character = party:civic_party.party_leader
+		NOT = {
+			current_ruler = {
+				party = civic_party
+			}
+		}
+		NOT = {
+			biggest_party = party:civic_party
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = faction_favor_support_toggle
+			days = 750
+		}
+		party:civic_party.party_leader = {
+			save_scope_as = faction_12_target
+		}
+	}
+	
+	option = {
+		name = "faction.12.a"
+		add_civic_favor_effect = yes
+		add_civic_senate_support_small_effect = yes
+		ai_chance = {
+			factor = 10
+		}
+	}
+	
+	option = {
+		name = "faction.12.b"
+		scope:faction_12_target = {
+			add_loyalty = loyalty_faction_suggestion_refused
+		}
+	}
+	
+	option = {
+		name = "faction.12.c"
+		add_civic_favor_effect = yes
+		add_treasury = {
+			value = 0
+			subtract = root.has_monthly_income
+			multiply = 6
+		}
+		add_civic_senate_support_large_effect = yes
+	}
+	
+	option = {
+		highlight = yes
+		name = "faction.12.d"
+		custom_tooltip = "crafty_tooltip"
+		trigger = {
+			current_ruler = {
+				has_trait = crafty
+			}
+		}
+		scope:faction_12_target = {
+			add_loyalty = loyalty_faction_bribery_revealed
+			add_popularity = subtract_popularity_huge
+		}
+	}
+	
+}
+
+faction.13 = {
+	type = country_event 
+	title = "faction.13.t"
+	desc = "faction.13.desc"
+	picture = dagger_behind_back
+	
+	left_portrait = root.current_ruler
+	right_portrait = party:mercantile_party.party_leader
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		NOT = {
+			has_variable = faction_favor_support_toggle
+		}
+		has_party = party:mercantile_party
+		target_is_valid_character = party:mercantile_party.party_leader
+		NOT = {
+			current_ruler = {
+				party = mercantile_party
+			}
+		}
+		NOT = {
+			biggest_party = party:mercantile_party
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = faction_favor_support_toggle
+			days = 750
+		}
+		party:mercantile_party.party_leader = {
+			save_scope_as = faction_13_target
+		}
+	}
+	
+	option = {
+		name = "faction.13.a"
+		scope:faction_13_target = {
+			add_gold = {
+				value = root.has_monthly_income
+				multiply = 2
+			}
+		}
+		add_treasury = {
+			value = 0
+			subtract = root.has_monthly_income
+			multiply = 2
+		}
+		add_mercantile_senate_support_small_effect = yes
+		ai_chance = {
+			factor = 10
+		}
+	}
+	
+	option = {
+		name = "faction.13.b"
+		scope:faction_13_target = {
+			add_loyalty = loyalty_faction_suggestion_refused
+		}
+		add_country_modifier = {
+			name = merchant_embargo
+			duration = 1825
+		}
+	}
+	
+	option = {
+		name = "faction.13.c"
+		add_mercantile_favor_effect = yes
+		scope:faction_13_target = {
+			add_gold = {
+				value = root.has_monthly_income
+				multiply = 5
+			}
+		}
+		add_treasury = {
+			value = 0
+			subtract = root.has_monthly_income
+			multiply = 5
+		}
+		add_mercantile_senate_support_large_effect = yes
+	}
+	
+	option = {
+		highlight = yes
+		name = "faction.13.d"
+		custom_tooltip = "crafty_tooltip"
+		trigger = {
+			current_ruler = {
+				has_trait = crafty
+			}
+		}
+		scope:faction_13_target = {
+			add_loyalty = loyalty_faction_bribery_revealed
+			add_popularity = subtract_popularity_huge
+		}
+	}
+	
+}
+
+faction.14 = {
+	type = country_event 
+	title = "faction.14.t"
+	desc = "faction.14.desc"
+	picture = war_chest
+	
+	left_portrait = root.current_ruler
+	right_portrait = party:religious_party.party_leader
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		NOT = {
+			has_variable = faction_favor_support_toggle
+		}
+		has_party = party:religious_party
+		target_is_valid_character = party:religious_party.party_leader
+		NOT = {
+			current_ruler = {
+				party = religious_party
+			}
+		}
+		NOT = {
+			biggest_party = party:religious_party
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = faction_favor_support_toggle
+			days = 750
+		}
+		party:religious_party.party_leader = {
+			save_scope_as = faction_14_target
+		}
+	}
+	
+	option = {
+		name = "faction.14.a"
+		scope:faction_14_target = {
+			add_gold = {
+				value = root.has_monthly_income
+				multiply = 2
+				max = 200
+			}
+		}
+		add_treasury = {
+			value = 0
+			subtract = root.has_monthly_income
+			multiply = 2
+			min = -200
+		}
+		add_religious_senate_support_small_effect = yes
+		ai_chance = {
+			factor = 10
+		}
+	}
+	
+	option = {
+		name = "faction.14.b"
+		scope:faction_14_target = {
+			add_loyalty = loyalty_faction_suggestion_refused
+		}
+		add_country_modifier = {
+			name = priests_refusing_to_perform_rites
+			duration = 1825
+		}
+	}
+	
+	option = {
+		name = "faction.14.c"
+		add_religious_favor_effect = yes
+		scope:faction_14_target = {
+			add_gold = {
+				value = root.has_monthly_income
+				multiply = 4
+				max = 400
+			}
+		}
+		add_treasury = {
+			value = 0
+			subtract = root.has_monthly_income
+			multiply = 4
+			min = -400
+		}
+		add_religious_senate_support_large_effect = yes
+	}
+
+}
+
+faction.15 = {
+	type = country_event 
+	title = "faction.15.t"
+	desc = "faction.15.desc"
+	picture = senate_debate
+	
+	left_portrait = root.current_ruler
+	right_portrait = party:populist_party.party_leader
+	
+	trigger = {
+		is_republic = yes
+		exists = current_ruler
+		NOT = {
+			has_variable = faction_favor_support_toggle
+		}
+		has_party = party:populist_party
+		target_is_valid_character = party:populist_party.party_leader
+		NOT = {
+			current_ruler = {
+				party = populist_party
+			}
+		}
+		NOT = {
+			biggest_party = party:populist_party
+		}
+	}
+	
+	immediate = {
+		set_variable = {
+			name = faction_favor_support_toggle
+			days = 750
+		}
+		party:populist_party.party_leader = {
+			save_scope_as = faction_15_target
+		}
+	}
+	
+	option = {
+		name = "faction.15.a"
+		add_party_support = {
+			party = populist_party
+			value = 20
+		}
+		add_populist_senate_support_small_effect = yes
+		ai_chance = {
+			factor = 10
+		}
+	}
+	
+	option = {
+		name = "faction.15.b"
+		scope:faction_15_target = {
+			add_loyalty = loyalty_faction_populists_refused
+			add_popularity = popularity_huge
+		}
+		
+	}
+
+}

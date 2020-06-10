@@ -1,0 +1,1041 @@
+﻿namespace = scheme
+# Each scheme requires the scope scheme_target to be set in the immediate, prior to adding the scheme.
+# Scheme title and description are associated with the ID, and stored in custom localization
+#
+
+scheme.1 = {
+	type = minor_character_event
+	title = "scheme.1.t"
+	desc = "scheme.1.desc"
+	
+	picture = dagger_behind_back
+	
+	left_portrait = scope:thief
+	
+	interface_lock = no
+	
+	trigger = {
+		is_alive = yes
+	}
+	
+	option = {
+		name = "scheme.1.a"
+		trigger = {
+			NOT = {
+				has_trait = lunatic
+			}
+		}
+		add_gold = -200
+		scope:thief = {
+			add_gold = 200
+		}
+	}
+	
+	option = {
+		name = "scheme.1.b"
+		custom_tooltip = "high_martial_character_tt"
+		trigger = {
+			martial >= 10
+			NOT = {
+				has_trait = lunatic
+			}
+		}
+		highlight = yes
+		add_gold = -200
+		scope:thief = {
+			add_gold = 200
+			if = {
+				limit = {
+					health >= 10
+				}
+				add_health = -10
+			}
+			else = {
+				death = {
+					death_reason = death_while_stealing
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.1.c"
+		custom_tooltip = "lunatic_bad_tooltip"
+		trigger = {
+			has_trait = lunatic
+		}
+		exclusive = yes
+		highlight = yes
+		add_gold = -400
+		scope:thief = {
+			add_gold = 400
+		}
+	}
+	
+}
+
+scheme.2 = {
+	type = minor_character_event
+	title = "scheme.2.t"
+	desc = "scheme.2.desc"
+	
+	picture = dagger_behind_back
+	
+	left_portrait = scope:thief
+	
+	interface_lock = no
+	
+	option = {
+		name = "scheme.2.a"
+		scope:thief = {
+			if = {
+				limit = {
+					health >= 20
+				}
+				add_health = -20
+			}
+			else = {
+				death = {
+					death_reason = death_while_stealing
+				}
+			}
+		}
+	}
+	
+}
+
+scheme.3 = {
+	type = character_event
+	hidden = yes
+	
+	trigger = {
+		is_ruler = no
+		has_ambition = ambition_content_in_life
+		OR = {
+			title_importance_svalue > 1.25
+			power_base >= 1
+			is_head_of_family = yes
+		}
+	}
+	
+	immediate = {
+		clear_ambition_effect = yes
+	}
+}
+
+scheme.4 = {
+	type = minor_character_event
+	title = "scheme.4.t"
+	desc = "scheme.4.desc"
+	
+	picture = city_country
+	
+	left_portrait = root
+	right_portrait = scope:thief
+	
+	interface_lock = no
+	
+	immediate = {
+		random_holdings = {
+			limit = {
+				NOT = { has_province_modifier = family_estate_modifier }
+				NOT = { has_province_modifier = family_estates_being_expanded_modifier }
+			}
+			save_scope_as = holding_prov
+		}
+	}
+	
+	option = {
+		name = "scheme.4.a"
+		trigger = { exists = scope:holding_prov }
+		remove_holding = scope:holding_prov
+		scope:thief = {
+			add_holding = scope:holding_prov
+		}
+	}
+	
+	option = {
+		name = "scheme.4.b"
+		trigger = {
+			OR = {
+				is_ruler = yes
+				NOT = { exists = scope:holding_prov }
+			}
+		}
+		scope:thief = {
+			add_gold = {
+				value = root.employer.has_monthly_income
+				multiply = 2
+			}
+		}
+		employer = {
+			add_treasury = {
+				value = root.employer.has_monthly_income
+				multiply = -2
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.4.c"
+		custom_tooltip = "lunatic_tooltip"
+		trigger = {
+			is_ruler = yes
+			has_trait = lunatic
+			exists = scope:holding_prov
+		}
+		highlight = yes
+		custom_tooltip = gladiatorial_combat_scheme
+		scope:thief = {
+			save_scope_as = target
+		}
+		save_scope_as = recipient
+		employer = {
+			trigger_event = {
+				id = gladiator.1
+			}
+		}
+	}
+	
+}
+
+scheme.5 = {
+	type = minor_character_event
+	title = "scheme.5.t"
+	desc = "scheme.5.desc"
+	
+	picture = city_country
+	
+	left_portrait = root
+	right_portrait = scope:thief
+	
+	interface_lock = no
+	
+	trigger = {
+		is_alive = yes
+	}
+	
+	option = {
+		name = "scheme.5.a"
+		scope:thief = {
+			add_gold = -50
+		}
+		if = {
+			limit = {
+				is_ruler = no
+			}
+			add_gold = 50
+		}
+		else = {
+			employer = {
+				add_treasury = 50
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.5.b"
+		trigger = {
+			is_ruler = yes
+		}
+		employer = {
+			if = {
+				limit = {
+					is_monarchy = yes
+				}
+				add_legitimacy = 5
+			}
+			else = {
+				add_stability = 5
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.5.c"
+		custom_tooltip = "kindly_tooltip"
+		trigger = {
+			is_ruler = yes
+			has_trait = kindly
+		}
+		highlight = yes
+		scope:thief = {
+			add_loyalty = loyalty_thief_forgiven
+		}
+	}
+}
+
+scheme.6 = {
+	type = character_event
+	title = "scheme.6.t"
+	desc = "scheme.6.desc"
+	
+	picture = senator_conversing
+	
+	left_portrait = root
+	right_portrait = scope:patronage_requester
+	
+	trigger = {
+		scope:patronage_requester = { is_adult = yes }
+	}
+	
+	option = {
+		name = "scheme.6.a"
+		add_popularity = popularity_medium
+		scope:patronage_requester = {
+			add_character_modifier = {
+				name = patronage_cmod
+				duration = 3650
+			}
+		}
+		if = {
+			limit = {
+				is_ruler = yes
+			}
+			scope:patronage_requester = {
+				add_finesse = 1
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.6.b"
+		if = {
+			limit = {
+				is_ruler = yes
+			}
+			scope:patronage_requester = {
+				add_loyalty = loyalty_refused_patronage
+			}
+			if = {
+				limit = {
+					finesse <= 8
+				}
+				custom_tooltip = stunning_puns_tt
+				add_finesse = 1
+			}
+		}
+	}
+	
+}
+
+
+scheme.7 = {												# Demand Office - Lofty Notions I
+	type = character_event
+	hidden = yes
+	
+	immediate = {
+		save_scope_as = demand_office_event_scope
+		set_variable = {
+			name = demanded_an_office
+			days = 7300 # 20 years
+		}
+		employer = {
+			trigger_event = {
+				id = scheme.8
+			}
+		}
+	}
+}
+
+
+scheme.8 = {												# Demand Office - Lofty Notions II
+	type = country_event
+	title = "scheme.8.t"
+	desc = {
+		first_valid = {
+			triggered_desc = { # No office holder exists
+				trigger = {
+					NOT = {
+						exists = scope:demand_office_old_officer_scope
+					}
+				}
+				desc = "scheme.8.desc_1"
+			}
+			triggered_desc = { # Office holder exists
+				trigger = {
+					always = yes
+				}
+				desc = "scheme.8.desc_2"
+			}
+		}
+	}
+	picture = council_country
+	
+	left_portrait = current_ruler
+	right_portrait = scope:demand_office_event_scope
+	right_portrait = scope:demand_office_old_officer_scope
+	
+	trigger = {
+		has_land = yes
+		exists = scope:demand_office_event_scope
+		scope:demand_office_event_scope = {
+			is_alive = yes
+			prisoner = no
+			employer = root
+		}
+		NOT = { has_variable = scheme_8_cooldown }
+	}
+	
+	immediate = {
+		set_variable = {
+			name = scheme_8_cooldown
+			days = 1825 # 5 years
+		}
+		demand_office_skill_effect = yes # Picks which office schemer wants based on their best skill
+		demand_office_master_scope_effect = yes # Sets scope of disputed office's current holder (if they exist)
+	}
+	
+	option = {												# Give office freely
+		name = "scheme.8.a"
+		trigger = {
+			NOT = {
+				current_ruler = { is_friend = scope:demand_office_event_scope }
+			}
+		}
+		scope:demand_office_event_scope = { 
+			add_loyalty = loyalty_office_granted
+		}
+		demand_office_transfer_effect = yes
+		if = {
+			limit = { exists = scope:demand_office_old_officer_scope }
+			scope:demand_office_old_officer_scope = { add_loyalty = loyalty_removed_office }
+		}
+		else = {
+			current_ruler = { add_popularity = subtract_popularity_medium }
+		}
+		demand_office_skill_tooltip_effect = yes
+	}
+	
+	option = { 											# Friend give office
+		name = "scheme.8.b"
+		highlight = yes
+		trigger = {
+			current_ruler = { is_friend = scope:demand_office_event_scope }
+		}
+		scope:demand_office_event_scope = { 
+			add_loyalty = loyalty_office_granted
+		}
+		demand_office_transfer_effect = yes
+		if = {
+			limit = { exists = scope:demand_office_old_officer_scope }
+			scope:demand_office_old_officer_scope = { add_loyalty = loyalty_removed_office }
+		}
+		else = {
+			current_ruler = { add_popularity = subtract_popularity_large }
+		}
+		current_ruler = {
+			add_corruption = corruption_medium
+		}
+		custom_tooltip = scheme.8.bt
+	}
+	
+	option = {											# Give office for bribe
+		name = "scheme.8.c"
+		highlight = yes
+		trigger = {
+			current_ruler = {
+				char_is_bad_leader_trigger = yes
+			}
+			scope:demand_office_event_scope = {
+				wealth >= 100
+			}
+		}
+		demand_office_transfer_effect = yes
+		scope:demand_office_event_scope = {
+			add_gold = {
+				subtract = wealth
+				divide = 4
+			}
+			add_corruption = corruption_medium
+		}
+		if = {
+			limit = { exists = scope:demand_office_old_officer_scope }
+			scope:demand_office_old_officer_scope = { add_loyalty = loyalty_removed_office }
+		}
+		else = {
+			current_ruler = { add_popularity = subtract_popularity_large }
+		}
+		current_ruler = {
+			add_gold = {
+				add = scope:demand_office_event_scope.wealth
+				divide = 8
+			}
+			add_corruption = corruption_large
+		}
+		add_treasury = {
+			add = scope:demand_office_event_scope.wealth
+			divide = 8
+		}
+		custom_tooltip = scheme.8.ct
+	}
+	
+	option = { 												# Dissuade
+		name = "scheme.8.d" 
+		highlight = yes
+		trigger = {
+			current_ruler = {
+				OR = {
+					char_is_demagogue_trigger = yes
+					charisma >= 7
+				}
+			}
+		}
+		scope:demand_office_event_scope = {
+			clear_ambition_effect = yes
+			add_prominence = subtract_prominence_large
+			hidden_effect = {
+				random = {
+					chance = 25
+					if = {
+						limit = {
+							NOT = {
+								has_trait = depressed
+							}
+						}
+						add_trait = depressed
+					}
+				}
+			}
+		}
+		if = {
+			limit = { exists = scope:demand_office_old_officer_scope }
+			scope:demand_office_old_officer_scope = { add_loyalty = loyalty_defended_office }
+		}
+		else = {
+			current_ruler = { add_popularity = popularity_small }
+		}
+		custom_tooltip = scheme.8.dt
+	}
+	
+	option = { 												# Refuse
+		name = "scheme.8.e"
+		trigger = {
+			current_ruler = {
+				NOR = {
+					char_is_demagogue_trigger = yes
+					charisma >= 8
+				}
+				NAND = {
+					char_is_rude_trigger = yes
+					NOR = {
+						is_friend = scope:demand_office_event_scope
+						is_rival = scope:demand_office_event_scope
+					}
+				}
+			}
+		}
+		scope:demand_office_event_scope = {
+			add_loyalty = loyalty_refused_office
+			add_prominence = subtract_prominence_large
+		}
+		if = {
+			limit = { exists = scope:demand_office_old_officer_scope }
+			scope:demand_office_old_officer_scope = { add_loyalty = loyalty_defended_office }
+		}
+		else = {
+			current_ruler = { add_popularity = popularity_small }
+		}
+	}
+	
+	option = { 												# Antagonize
+		name = "scheme.8.f"
+		highlight = yes
+		trigger = { 
+			current_ruler = {
+				char_is_rude_trigger = yes
+				NOR = {
+					is_friend = scope:demand_office_event_scope
+					is_rival = scope:demand_office_event_scope
+				}
+			}
+		}
+		scope:demand_office_event_scope = {	
+			add_loyalty = loyalty_refused_office
+			add_prominence = subtract_prominence_large
+			add_rival = root.current_ruler
+		}
+		if = {
+			limit = { exists = scope:demand_office_old_officer_scope }
+			scope:demand_office_old_officer_scope = { add_loyalty = loyalty_defended_office }
+		}
+		custom_tooltip = scheme.8.ft
+	}
+	
+}
+
+scheme.9 = {
+	type = minor_country_event
+	title = "scheme.9.t"
+	desc = "scheme.9.desc"
+	
+	left_portrait = scope:ongoing_scheme_target
+	right_portrait = scope:murderer
+	
+	picture = trial_govtype
+	
+	interface_lock = no
+	
+	option = {
+		name = "scheme.9.a" 
+		current_ruler = {
+			add_popularity = -5
+		}
+	}
+	option = {
+		name = "scheme.9.b"
+		current_ruler = {
+			add_popularity = 5
+		}
+		scope:murderer = {
+			add_loyalty = loyalty_murder_guilt
+		}
+	}
+}
+
+scheme.10 = {
+	type = minor_country_event
+	title = "scheme.10.t"
+	desc = "scheme.10.desc"
+	
+	left_portrait = current_ruler
+	left_portrait = scope:ongoing_scheme_target
+	right_portrait = scope:failed_murderer
+	
+	picture = trial_govtype
+	
+	interface_lock = no
+	
+	option = {
+		name = "scheme.10.a"
+		scope:failed_murderer = {
+			add_loyalty = loyalty_murder_dismissed
+		}
+		scope:ongoing_scheme_target = {
+			add_loyalty = loyalty_murder_dismissed_victim
+		}
+	}
+	
+	option = {
+		name = "scheme.10.b"
+		imprison = {
+			target = scope:failed_murderer
+		}
+		scope:failed_murderer = {
+			add_loyalty = loyalty_murder_guilt
+		}
+		scope:ongoing_scheme_target = {
+			add_loyalty = loyalty_murder_guilt_victim
+		}
+	}
+}
+
+scheme.11 = {
+	type = character_event
+	title = "scheme.11.t"
+	desc = "scheme.11.desc"
+	
+	left_portrait = root
+	right_portrait = scope:ancestor
+	
+	picture = great_library
+	
+	immediate = {
+		if = {
+			limit = {
+				exists = father.father.father
+			}
+			father.father.father = {
+				save_scope_as = ancestor
+			}
+		}
+		else_if = {
+			limit = {
+				exists = father.father
+			}
+			father.father = {
+				save_scope_as = ancestor
+			}
+		}
+		else_if = {
+			limit = {
+				exists = father
+			}
+			father = {
+				save_scope_as = ancestor
+			}
+		}
+		else = {
+			save_scope_as = ancestor
+		}
+		hidden_effect = {
+			random_list = {
+				1 = { 
+                    add_trait = antigonids
+                    if = {
+                        limit = {
+                            num_of_children > 0
+                        }
+                        every_child = {
+                            limit = {
+                                is_alive = yes
+                            }
+                            add_trait = antigonids
+                            if = {
+                                limit = {
+                                    num_of_children > 0
+                                }    
+                                every_child = {
+                                    limit = { 
+                                        is_alive = yes
+                                    }
+                                    add_trait = antigonids
+                                }
+                            }
+                        }
+                    }
+                }
+                1 = { 
+                    add_trait = antipatrid 
+                    if = {
+                        limit = {
+                            num_of_children > 0
+                        }
+                        every_child = {
+                            limit = { 
+                                is_alive = yes
+                            }
+                            add_trait = antipatrid
+                            if = {
+                                limit = {
+                                    num_of_children > 0
+                                }    
+                                every_child = {
+                                    limit = {  
+                                        is_alive = yes
+                                    }
+                                    add_trait = antipatrid
+                                }
+                            }
+                        }
+                    }
+                }
+                1 = { 
+                    add_trait = argeads 
+                    if = {
+                        limit = {
+                            num_of_children > 0
+                        }
+                        every_child = {
+                            limit = { 
+                                is_alive = yes
+                            }
+                            add_trait = argeads
+                            if = {
+                                limit = {
+                                    num_of_children > 0
+                                }    
+                                every_child = {
+                                    limit = {  
+                                        is_alive = yes
+                                    }
+                                    add_trait = argeads
+                                }
+                            }
+                        }
+                    }
+                }
+                1 = { 
+                    add_trait = lagids 
+                    if = {
+                        limit = {
+                            num_of_children > 0
+                        }
+                        every_child = {
+                            limit = { 
+                                is_alive = yes
+                            }
+                            add_trait = lagids
+                            if = {
+                                limit = {
+                                    num_of_children > 0
+                                }    
+                                every_child = {
+                                    limit = { 
+                                        is_alive = yes
+                                    }
+                                    add_trait = lagids
+                                }
+                            }
+                        }
+                    }
+                }
+                1 = { 
+                    add_trait = seleucids 
+                    if = {
+                        limit = {
+                            num_of_children > 0
+                        }
+                        every_child = {
+                            limit = {  
+                                is_alive = yes
+                            }
+                            add_trait = seleucids
+                            if = {
+                                limit = {
+                                    num_of_children > 0
+                                }    
+                                every_child = {
+                                    limit = { 
+                                        is_alive = yes
+                                    }
+                                    add_trait = seleucids
+                                }
+                            }
+                        }
+                    }
+                }
+                1 = { 
+                    add_trait = alcimachid 
+                    if = {
+                        limit = {
+                            num_of_children > 0
+                        }
+                        every_child = {
+                            limit = { 
+                                is_alive = yes
+                            }
+                            if = {
+                                limit = {
+                                    num_of_children > 0
+                                }    
+                                every_child = {
+                                    limit = { 
+                                        is_alive = yes
+                                    }
+                                    add_trait = alcimachid
+                                }
+                            }
+                        }
+                    }
+                }
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.11.a"
+		employer = {
+			add_legitimacy = 10
+		}
+		if = {
+            limit = {
+                num_of_children > 0
+                any_child = {
+                    is_alive = yes
+                }
+            }
+            custom_tooltip = "gained_diadochi_bloodline_trait_children"
+        }
+        else = { custom_tooltip = "gained_diadochi_bloodline_trait" }
+	}
+}
+
+scheme.12 = {
+	type = minor_country_event
+	title = "scheme.12.t"
+	desc = "scheme.12.desc"
+	
+	picture = revolt
+	
+	left_portrait = scope:ongoing_scheme_target
+	
+	interface_lock = no
+	
+	immediate = {
+		random_country = {
+			limit = {
+				NOT = {
+					this = root
+				}
+			}
+			weight = {
+				modifier = {
+					factor = 20
+					in_diplomatic_range = root
+				}
+			}
+			save_scope_as = escape_target
+		}
+		random_country_state = {
+			save_scope_as = target_state
+		}
+		save_scope_as = origin_country
+		scope:ongoing_scheme_target = {
+			remove_all_positions = yes
+			move_country = scope:escape_target
+			set_as_minor_character = this
+		}
+	}
+	
+	option = {
+		name = "scheme.12.a"
+		show_as_tooltip = {
+			scope:target_state = {
+				every_state_province = {
+					add_claim = scope:escape_target
+				}
+			}
+		}
+		hidden_effect = {
+			scope:escape_target = {
+				trigger_event = {
+					id = scheme.13
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.12.b"
+		custom_tooltip = silver_tongued_tooltip
+		trigger = {
+			current_ruler = {
+				has_trait = silver_tongued
+			}
+		}
+		highlight = yes
+		add_stability = -5
+	}
+	
+}
+
+scheme.13 = {
+	type = country_event
+	title = "scheme.13.t"
+	desc = "scheme.13.desc"
+	
+	picture = council_country
+	
+	left_portrait = current_ruler
+	right_portrait = scope:ongoing_scheme_target
+	
+	trigger = {
+		scope:ongoing_scheme_target = {
+			is_alive = yes
+		}
+	}
+	
+	option = {
+		name = "scheme.13.a"
+		scope:ongoing_scheme_target = {
+			if = {
+				limit = {
+					has_character_modifier = foreign_citizen
+				}
+				remove_character_modifier = foreign_citizen
+			}
+		}
+		scope:target_state = {
+			every_state_province = {
+				add_claim = root
+			}
+		}
+	}
+	
+	option = {
+		name = "scheme.13.b"
+		current_ruler = {
+			add_popularity = 5
+		}
+	}
+	
+}
+
+scheme.14 = { #success
+	type = country_event
+	title = "scheme.14.t"
+	desc = "scheme.14.desc"
+	
+	left_portrait = scope:assassinator
+	right_portrait = scope:assassinatee
+	
+	picture = dagger_behind_back
+	
+	trigger = {
+		exists = scope:assassinatee
+		scope:assassinatee = {
+			is_alive = yes
+		}
+	}
+	
+	immediate = {
+		scope:assassinator = {
+			save_scope_as = murderer
+		}
+	}
+	
+	option = {
+		name = "scheme.14.a"
+		scope:assassinatee = {
+			death = {
+				death_reason = death_internal_assassination
+				killer = scope:assassinator
+			}
+		}
+		scope:assassinator = {
+			if = {
+				limit = {
+					has_variable = number_of_murders
+				}
+				change_variable = {
+					name = number_of_murders
+					add = 1
+				}
+			}
+			else = {
+				set_variable = {
+					name = number_of_murders
+					value = 1
+				}
+			}
+		}
+	}
+	
+}
+
+scheme.15 = { #failure    
+	type = country_event
+	title = "scheme.15.t"
+	desc = "scheme.15.desc"
+	
+	left_portrait = scope:assassinator
+	right_portrait = scope:assassinatee
+	
+	picture = greek_court
+	
+	trigger = {
+		exists = scope:assassinatee
+		scope:assassinatee = {
+			is_alive = yes
+		}
+	}
+	
+	option = {
+		name = "scheme.15.a"
+		scope:assassinator = {
+			if = {
+				limit = {
+					health > 10
+				}
+				add_health = -10
+			}
+			else = {
+				death = {
+					death_reason = death_stabbing
+				}
+			}
+		}
+	}
+	
+}

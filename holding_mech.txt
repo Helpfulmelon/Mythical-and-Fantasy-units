@@ -1,0 +1,84 @@
+﻿namespace = holding_mech
+
+#holding_mech.1 = { #Deprecated
+#	type = character_event
+#	hidden = yes
+#	
+#	trigger = {
+#		is_ruler = no
+#		is_adult = yes
+#		NOT = {
+#			has_character_modifier = foreign_citizen
+#		}
+#		trigger_if = {
+#			limit = {
+#				employer = {
+#					gender_equality = no
+#				}
+#			}
+#			is_female = no
+#		}
+#		wealth >= character_holding_price_svalue
+#		num_holdings_owned < max_holdings_owned
+#		employer = {
+#			NOR = {
+#				tag = BAR
+#				tag = MER
+#				tag = PIR
+#				tag = REB
+#			}
+#			any_owned_province = {
+#				controller = root.employer
+#				OR = {
+#					AND = {
+#						NOT = {
+#							is_in_region = root.employer.capital_scope 
+#						}
+#						current_amount_of_holdings < max_amount_of_holdings
+#					}
+#					current_amount_of_holdings < can_auto_buy_holdings_svalue
+#				}
+#			}
+#		}
+#	}
+#	
+#	weight_multiplier = {
+#		modifier = {
+#			factor = holdings_prominence_chance_svalue
+#		}
+#	}
+#	
+#	immediate = {
+#		employer = {
+#			random_owned_province = {
+#				limit = {
+#					controller = root.employer
+#					OR = {
+#						AND = {
+#							NOT = {
+#								is_in_region = root.employer.capital_scope 
+#							}
+#							current_amount_of_holdings < max_amount_of_holdings
+#						}
+#						current_amount_of_holdings < can_auto_buy_holdings_svalue
+#					}
+#				}
+#				weight = {
+#					modifier = {
+#						factor = 2
+#						any_holding_owners = {
+#							this = root
+#						}
+#					}
+#				}
+#				save_scope_as = holding_target
+#			}
+#		}
+#		add_gold = {
+#			value = 0
+#			subtract = character_holding_price_svalue
+#		}
+#		add_holding = scope:holding_target
+#	}
+#	
+#}
