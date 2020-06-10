@@ -1,0 +1,296 @@
+﻿switch_government_type_event_clearup_effect = { # If we need to clear anything silently on gov switch - put it here!
+	hidden_effect = {
+		if = {
+			limit = {
+				has_variable = dictatorship_enabled
+			}
+			remove_variable = dictatorship_enabled
+		}
+		if = {
+			limit = {
+				current_ruler = {
+					has_variable = dictator_holding_power
+				}
+			}
+			current_ruler = {
+				remove_variable = dictator_holding_power
+			}
+		}
+		if = {
+			limit = {
+				has_country_modifier = electoral_extension_mod
+			}
+			remove_country_modifier = electoral_extension_mod
+		}
+		if = {
+			limit = {
+				is_subject_type = vassal_tribe
+				is_tribal = no
+			}
+			trigger_event = { id = country_diplomacy.38 } #We will now be tributary
+		}
+	}
+}
+
+tribal_formable_government_change_effect = {
+	if = {
+		limit = {
+			is_tribal = yes
+			NOT = { government = tribal_federation }
+		}
+		change_government = tribal_federation
+	}
+	else = {
+		add_political_influence = 150
+	}
+}
+
+monarchy_formable_government_change_effect = {
+	add_political_influence = 150
+}
+
+monarchy_republic_into_imperium_formable_effect = {
+	if = {
+		limit = {
+			is_monarchy = yes
+			NOR = {
+				government = imperium
+				government = imperial_cult
+			}
+		}
+		change_government = imperium
+	}
+	else = {
+		add_political_influence = 300
+	}
+}
+
+koine_effect = {
+	add_country_modifier = {
+		name = "grand_koine"
+		duration = -1
+	}
+	capital_scope = {
+		add_province_modifier = {
+			name = great_formable_koine_capital_modifier
+			duration = -1
+		}
+	}
+}
+
+delian_effect = {
+	add_country_modifier = {
+		name = "delian_league_modifier"
+		duration = -1
+	}
+	capital_scope = {
+		add_province_modifier = {
+			name = great_formable_koine_capital_modifier
+			duration = -1
+		}
+	}
+}
+
+add_1_free_province_investments = {
+	custom_tooltip = "gain_1_free_investment_tt"
+	if = {
+		limit = {
+			NOT = {
+				has_variable = free_investments
+			}
+		}
+		set_variable = {
+			name = free_investments
+			value = 1
+		}
+	}
+	else = {
+		change_variable = {
+			name = free_investments
+			add = 1
+		}
+	}
+}
+
+add_2_free_province_investments = {
+	custom_tooltip = "gain_2_free_investment_tt"
+	if = {
+		limit = {
+			NOT = {
+				has_variable = free_investments
+			}
+		}
+		set_variable = {
+			name = free_investments
+			value = 2
+		}
+	}
+	else = {
+		change_variable = {
+			name = free_investments
+			add = 2
+		}
+	}
+}
+
+add_3_free_province_investments = {
+	custom_tooltip = "gain_3_free_investment_tt"
+	if = {
+		limit = {
+			NOT = {
+				has_variable = free_investments
+			}
+		}
+		set_variable = {
+			name = free_investments
+			value = 3
+		}
+	}
+	else = {
+		change_variable = {
+			name = free_investments
+			add = 3
+		}
+	}
+}
+
+add_4_free_province_investments = {
+	custom_tooltip = "gain_4_free_investment_tt"
+	if = {
+		limit = {
+			NOT = {
+				has_variable = free_investments
+			}
+		}
+		set_variable = {
+			name = free_investments
+			value = 4
+		}
+	}
+	else = {
+		change_variable = {
+			name = free_investments
+			add = 4
+		}
+	}
+}
+
+add_5_free_province_investments = {
+	custom_tooltip = "gain_5_free_investment_tt"
+	if = {
+		limit = {
+			NOT = {
+				has_variable = free_investments
+			}
+		}
+		set_variable = {
+			name = free_investments
+			value = 5
+		}
+	}
+	else = {
+		change_variable = {
+			name = free_investments
+			add = 5
+		}
+	}
+}
+
+subtract_manpower_effect_10 = {
+	if = {
+		limit = {
+			manpower >= 10
+		}
+		add_manpower = -10
+	}
+	else = {
+		add_stability = -10
+	}
+}
+
+add_stability_effect_small = {
+	add_stability = 3
+}
+
+remove_stability_effect_small = {
+	add_stability = -5
+}
+
+hibernia_owner_check_effect = {
+	every_area_province = {
+		limit = {
+			exists = owner
+			NOR = {
+				owner = root
+				owner = {
+					is_ai = no
+				}
+			}
+		}
+		set_owned_by = root
+	}
+}
+
+formable_region_province_effect = {
+	every_region_province = {
+		limit = {
+			NOT = { owner = root }
+		}
+		add_claim = root
+	}
+}
+
+formable_area_province_effect = {
+	every_area_province = {
+		limit = {
+			NOT = { owner = root }
+		}
+		add_claim = root
+	}
+}
+
+formable_area_conquest_effect = {
+	every_area_province = {
+		limit = {
+			NOR = {
+				owner = root
+				owner = {
+					is_ai = no
+				}
+				province_id = 2108
+			}
+		}
+		set_conquered_by = root
+	}
+}
+
+formable_area_helvetia_conquest_effect = {
+	every_area_province = {
+		limit = {
+			NOR = {
+				owner = root
+				owner = {
+					is_ai = no
+				}
+				province_id = 3637
+				province_id = 3739
+				province_id = 3639
+			}
+		}
+		set_conquered_by = root
+	}
+}
+
+formable_province_conquest_effect = {
+	if = {
+		limit = {
+			NOR = {
+				owner = root
+				owner = {
+					is_ai = no
+				}
+			}
+		}
+		set_conquered_by = root
+	}
+}

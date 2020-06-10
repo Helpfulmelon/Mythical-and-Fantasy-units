@@ -1,0 +1,375 @@
+﻿## cs_ denotes country scope, default is character scope
+
+switch_to_random_party = { ### ADD NEW PARTIES TO THIS LIST
+	random_list = {
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:civic_party
+				}
+				NOT = {
+					party = civic_party
+				}
+			}
+			add_party_conviction = {
+				party = civic_party
+				value = 60
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:religious_party
+				}
+				NOT = {
+					party = religious_party
+				}
+			}
+			add_party_conviction = {
+				party = religious_party
+				value = 60
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:mercantile_party
+				}
+				NOT = {
+					party = mercantile_party
+				}
+			}
+			add_party_conviction = {
+				party = mercantile_party
+				value = 60
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:military_party
+				}
+				NOT = {
+					party = military_party
+				}
+			}
+			add_party_conviction = {
+				party = civic_party
+				value = 60
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:populist_party
+				}
+				NOT = {
+					party = populist_party
+				}
+			}
+			add_party_conviction = {
+				party = populist_party
+				value = 60
+			}
+		}
+	}
+}
+
+add_random_party_conviction_small = { ### ADD NEW PARTIES TO THIS LIST
+	random_list = {
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:civic_party
+				}
+				NOT = {
+					party = civic_party
+				}
+			}
+			add_party_conviction = {
+				party = civic_party
+				value = 10
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:religious_party
+				}
+				NOT = {
+					party = religious_party
+				}
+			}
+			add_party_conviction = {
+				party = religious_party
+				value = 10
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:mercantile_party
+				}
+				NOT = {
+					party = mercantile_party
+				}
+			}
+			add_party_conviction = {
+				party = mercantile_party
+				value = 10
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:military_party
+				}
+				NOT = {
+					party = military_party
+				}
+			}
+			add_party_conviction = {
+				party = civic_party
+				value = 10
+			}
+		}
+		20 = {
+			trigger = {
+				employer = {
+					has_party = party:populist_party
+				}
+				NOT = {
+					party = populist_party
+				}
+			}
+			add_party_conviction = {
+				party = populist_party
+				value = 10
+			}
+		}
+	}
+}
+
+add_support_for_char_party_small_effect = { 
+	if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:military_party
+			}
+			party = military_party
+		}
+		employer = {
+			add_party_support = {
+				party = military_party
+				value = 5
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:civic_party
+			}
+			party = civic_party
+		}
+		employer = {
+			add_party_support = {
+				party = civic_party
+				value = 5
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:mercantile_party
+			}
+			party = mercantile_party
+		}
+		employer = {
+			add_party_support = {
+				party = mercantile_party
+				value = 5
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:religious_party
+			}
+			party = religious_party
+		}
+		employer = {
+			add_party_support = {
+				party = religious_party
+				value = 5
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:populist_party
+			}
+			party = populist_party
+		}
+		employer = {
+			add_party_support = {
+				party = populist_party
+				value = 5
+			}
+		}
+	}
+}
+
+add_support_for_char_party_large_effect = { 
+	if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:military_party
+			}
+			party = military_party
+		}
+		employer = {
+			add_party_support = {
+				party = military_party
+				value = 10
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:civic_party
+			}
+			party = civic_party
+		}
+		employer = {
+			add_party_support = {
+				party = civic_party
+				value = 10
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:mercantile_party
+			}
+			party = mercantile_party
+		}
+		employer = {
+			add_party_support = {
+				party = mercantile_party
+				value = 10
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:religious_party
+			}
+			party = religious_party
+		}
+		employer = {
+			add_party_support = {
+				party = religious_party
+				value = 10
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			employer = {
+				is_republic = yes
+				has_party = party:populist_party
+			}
+			party = populist_party
+		}
+		employer = {
+			add_party_support = {
+				party = populist_party
+				value = 10
+			}
+		}
+	}
+}
+
+remove_party_leadership_effect = {
+	if = {
+		limit = {
+			is_party_leader = yes
+		}
+		if = {
+			limit = {
+				employer = {
+					is_republic = yes
+					has_party = party:military_party
+				}
+				party = military_party
+			}
+			employer = {
+				remove_party_leadership = military_party
+			}
+		}
+		else_if = {
+			limit = {
+				employer = {
+					is_republic = yes
+					has_party = party:civic_party
+				}
+				party = civic_party
+			}
+			employer = {
+				remove_party_leadership = civic_party
+			}
+		}
+		else_if = {
+			limit = {
+				employer = {
+					is_republic = yes
+					has_party = party:mercantile_party
+				}
+				party = mercantile_party
+			}
+			employer = {
+				remove_party_leadership = mercantile_party
+			}
+		}
+		else_if = {
+			limit = {
+				employer = {
+					is_republic = yes
+					has_party = party:religious_party
+				}
+				party = religious_party
+			}
+			employer = {
+				remove_party_leadership = religious_party
+			}
+		}
+		else_if = {
+			limit = {
+				employer = {
+					is_republic = yes
+					has_party = party:populist_party
+				}
+				party = populist_party
+			}
+			employer = {
+				remove_party_leadership = populist_party
+			}
+		}
+	}
+}

@@ -1,0 +1,332 @@
+﻿ach_holy_fire_effect = {
+	if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = roman_pantheon
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_roman_pantheon
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_roman_pantheon
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = egyptian_pantheon
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_egyptian_pantheon
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_egyptian_pantheon
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = shamanism
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_shamanism
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_shamanism
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = caucasian_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_caucasian_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_caucasian_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = mesopotamian_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_mesopotamian_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_mesopotamian_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = armenian_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_armenian_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_armenian_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = anatolian_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_anatolian_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_anatolian_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = druidism
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_druidism
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_druidism
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = animism
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_animism
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_animism
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = judaism
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_judaism
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_judaism
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = zoroaster
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_zoroaster
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_zoroaster
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = berber_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_berber_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_berber_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = germanic_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_germanic_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_germanic_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = indo_iranian_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_indo_iranian_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_indo_iranian_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = arabian_pantheon
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_arabian_pantheon
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_arabian_pantheon
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = buddhism
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_buddhism
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_buddhism
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = hindu
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_hindu
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_hindu
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = eastern_animism
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_eastern_animism
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_eastern_animism
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = bon_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_bon_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_bon_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = matrist_religion
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_matrist_religion
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_matrist_religion
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = jainism
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_jainism
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_jainism
+		}
+	}
+	else_if = {
+		limit = {
+			unit_location = {
+				dominant_province_religion = carthaginian_pantheon
+			}
+			unit_owner = {
+				NOT = {
+					has_variable = ach_holy_fire_carthaginian_pantheon
+				}
+			}
+		}
+		unit_owner = {
+			set_variable = ach_holy_fire_carthaginian_pantheon
+		}
+	}
+}

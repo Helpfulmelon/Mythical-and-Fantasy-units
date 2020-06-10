@@ -1,0 +1,889 @@
+﻿dhe_dde_pyrrhus_1_move_effect = {
+	if = {
+		limit = {
+			NOT = {
+				tag = PRY
+			}
+			c:PRY = {
+				has_land = yes
+				NOT = {
+					has_variable = pyrrhus_refused
+				}
+			}
+		}
+		hidden_effect = {
+			scope:pyrrhus = {
+				remove_all_positions = yes
+				move_country = c:PRY
+				remove_character_modifier = foreign_citizen
+			}
+			c:PRY = {
+				trigger_event = {
+					id = dhe_dde_pyrrhus.2
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				tag = EGY
+			}
+			c:EGY = {
+				has_land = yes
+				NOT = {
+					has_variable = pyrrhus_refused
+				}
+			}
+		}
+		hidden_effect = {
+			scope:pyrrhus = {
+				remove_all_positions = yes
+				move_country = c:EGY
+				remove_character_modifier = foreign_citizen
+			}
+			c:EGY = {
+				trigger_event = {
+					id = dhe_dde_pyrrhus.2
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				tag = SEL
+			}
+			c:SEL = {
+				has_land = yes
+				NOT = {
+					has_variable = pyrrhus_refused
+				}
+			}
+		}
+		hidden_effect = {
+			scope:pyrrhus = {
+				remove_all_positions = yes
+				move_country = c:SEL
+				remove_character_modifier = foreign_citizen
+			}
+			c:SEL = {
+				trigger_event = {
+					id = dhe_dde_pyrrhus.2
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				tag = TRE
+			}
+			c:TRE = {
+				has_land = yes
+				NOT = {
+					has_variable = pyrrhus_refused
+				}
+			}
+		}
+		hidden_effect = {
+			scope:pyrrhus = {
+				remove_all_positions = yes
+				move_country = c:TRE
+				remove_character_modifier = foreign_citizen
+			}
+			c:TRE = {
+				trigger_event = {
+					id = dhe_dde_pyrrhus.2
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				tag = MAC
+			}
+			c:MAC = {
+				has_land = yes
+				NOT = {
+					has_variable = pyrrhus_refused
+				}
+				OR = {
+					c:EPI = {
+						opinion = { 
+							target = c:MAC
+							value >= 100
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			scope:pyrrhus = {
+				remove_all_positions = yes
+				move_country = c:MAC
+				remove_character_modifier = foreign_citizen
+			}
+			c:MAC = {
+				trigger_event = {
+					id = dhe_dde_pyrrhus.2
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				tag = TLN
+			}
+			c:TLN = {
+				has_land = yes
+				NOT = {
+					has_variable = pyrrhus_refused
+				}
+			}
+		}
+		hidden_effect = {
+			scope:pyrrhus = {
+				remove_all_positions = yes
+				move_country = c:TLN
+				remove_character_modifier = foreign_citizen
+			}
+			c:TLN = {
+				trigger_event = {
+					id = dhe_dde_pyrrhus.2
+				}
+			}
+		}
+	}
+	else = {
+		hidden_effect = {
+			random_country = {
+				limit = {
+					country_culture_group = hellenic
+					NOT = {
+						has_variable = pyrrhus_refused
+					}
+				}
+				save_scope_as = dhe_dde_pyrrhus_fallback_country_scope
+				set_variable = pyrrhus_fallback_flag
+			}
+			if = {
+				limit = {
+					exists = scope:dhe_dde_pyrrhus_fallback_country_scope
+				}
+				scope:pyrrhus = {
+					remove_all_positions = yes
+					move_country = scope:dhe_dde_pyrrhus_fallback_country_scope
+					remove_character_modifier = foreign_citizen
+				}
+				scope:dhe_dde_pyrrhus_fallback_country_scope = {
+					trigger_event = {
+						id = dhe_dde_pyrrhus.2
+					}
+				}
+			}
+		}
+	}
+}
+
+pyrrhus_truce_scope_effect = {
+	hidden_effect = {
+		if = { # If not Egypt and have truce with Egypt
+			limit = {
+				NOT = {
+					tag = EGY
+				}
+				c:EGY = {
+					has_land = yes
+				}
+				has_truce_with = c:EGY
+			}
+			c:EGY = {
+				save_scope_as = pyrrhus_second_country_scope
+			}
+		}
+		else_if = { # If not Seleucids and have truce with Sel
+			limit = {
+				NOT = {
+					tag = SEL
+				}
+				c:SEL = {
+					has_land = yes
+				}
+				has_truce_with = c:SEL
+			}
+			c:SEL = {
+				save_scope_as = pyrrhus_second_country_scope
+			}
+		}
+		else_if = { # If not Phygria and have truce with Phygria
+			limit = {
+				NOT = {
+					tag = PRY
+				}
+				c:PRY = {
+					has_land = yes
+				}
+				has_truce_with = c:PRY
+			}
+			c:PRY = {
+				save_scope_as = pyrrhus_second_country_scope
+			}
+		}
+		else_if = { # If not Thrace and have truce with Thrace
+			limit = {
+				NOT = {
+					tag = TRE
+				}
+				c:TRE = {
+					has_land = yes
+				}
+				has_truce_with = c:TRE
+			}
+			c:TRE = {
+				save_scope_as = pyrrhus_second_country_scope
+			}
+		}
+		else_if = { # If not Macedon have truce with Macedon
+			limit = {
+				NOT = {
+					tag = MAC
+				}
+				c:MAC = {
+					has_land = yes
+				}
+				has_truce_with = c:MAC
+			}
+			c:MAC = {
+				save_scope_as = pyrrhus_second_country_scope
+			}
+		}
+	}
+}
+
+pyrrhus_wife_finder_effect = {
+	ordered_character = {
+		limit = {
+			is_alive = yes
+			is_ruler = no
+			is_female = yes
+			age >= 16
+			age <= 30
+			is_married = no
+			prisoner = no
+			from_ruler_family = yes
+			employer = root
+			is_at_location = root.capital_scope
+		}
+		order_by = age
+		max = 1
+		check_range_bounds = no
+		save_scope_as = pyrrhus_betrothed_scope
+	}
+}
+
+pyrrhus_4_big_supporter_effect = {
+	if = { # If commander add trait
+		limit = {
+			scope:pyrrhus = {
+				OR = {
+					is_general = yes 
+					is_admiral = yes
+				}
+				NOT = {
+					has_trait = tactician
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:pyrrhus = {
+					number_of_military_traits < max_number_of_military_traits_svalue
+				}
+			}
+			scope:pyrrhus = { add_trait = tactician }
+		}
+		else = {
+			scope:pyrrhus = { add_martial = 1 }
+		}
+	}
+	if = { # Befriend ruler if possible
+		limit = {
+			scope:pyrrhus = { can_get_friends = yes }
+			root.current_ruler = { can_get_friends = yes }
+			NOT = {
+				root.current_ruler = {
+					is_friend = scope:pyrrhus
+				}
+			}
+		}
+		scope:pyrrhus = { add_friend = root.current_ruler }
+	}
+	if = { # Marry Antigone to Pyrrhus if possible and Egypt
+		limit = {
+			scope:pyrrhus_second_country_scope = { tag = EGY }
+			char:115 = {
+				is_married = no
+				employer = root 
+			}
+		}
+		char:115 = {
+			save_scope_as = pyrrhus_betrothed_scope
+		}
+		scope:pyrrhus_betrothed_scope = {
+			if = {
+				limit = { is_married = yes}
+				hidden_effect = { divorce_character = scope:pyrrhus_betrothed_scope.spouse }
+			}
+		}
+		scope:pyrrhus = { 
+			if = {
+				limit = { is_married = yes}
+				hidden_effect = { divorce_character = scope:pyrrhus.spouse }
+			}
+			marry_character = scope:pyrrhus_betrothed_scope	
+		}
+	}
+	else_if = { # Other wife finder
+		limit = {
+			pyrrhus_wife_finder_trigger = yes
+		}
+		pyrrhus_wife_finder_effect = yes
+		scope:pyrrhus_betrothed_scope = {
+			if = {
+				limit = { is_married = yes}
+				hidden_effect = { divorce_character = scope:pyrrhus_betrothed_scope.spouse }
+			}
+		}
+		scope:pyrrhus = { 
+			if = {
+				limit = { is_married = yes}
+				hidden_effect = { divorce_character = scope:pyrrhus.spouse }
+			}
+			marry_character = scope:pyrrhus_betrothed_scope 
+		}
+	}
+	scope:pyrrhus = { # Move Pyrrhus to EPI
+		hidden_effect = { 
+			remove_all_positions = yes
+			move_country = c:EPI
+			remove_character_modifier = foreign_citizen
+		}
+	}
+	add_treasury = { # Give money to Pyrrhus
+		value = has_monthly_income
+		multiply = -2
+	}
+	c:EPI = { # Send EPI Pyrrhus arrival event
+		trigger_event = { id = dhe_dde_pyrrhus.5 }
+	}
+}
+
+pyrrhus_4_small_supporter_effect = {
+	if = { # Befriend ruler with Pyrrhus if possible
+		limit = {
+			scope:pyrrhus = { can_get_friends = yes }
+			root.current_ruler = { can_get_friends = yes }
+			NOT = {
+				root.current_ruler = {
+					is_friend = scope:pyrrhus
+				}
+			}
+		}
+		scope:pyrrhus = { add_friend = root.current_ruler }
+	}
+	if = { # Marry ruling family wife if possible
+		limit = {
+			scope:pyrrhus_second_country_scope = {
+				pyrrhus_wife_finder_trigger = yes
+			}
+		}
+		pyrrhus_wife_finder_effect = yes
+		scope:pyrrhus_betrothed_scope = {
+			if = {
+				limit = { is_married = yes}
+				hidden_effect = { divorce_character = scope:pyrrhus_betrothed_scope.spouse }
+			}
+		}
+		scope:pyrrhus = {
+			if = {
+				limit = { is_married = yes}
+				hidden_effect = { divorce_character = scope:pyrrhus.spouse }
+			}
+			marry_character = scope:pyrrhus_betrothed_scope
+		}
+	}
+	if = { # If General add trait Victorious
+		limit = {
+			scope:pyrrhus = {
+				OR = {
+					is_general = yes 
+					is_admiral = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:pyrrhus = {
+					number_of_status_traits < max_number_of_status_traits_svalue
+				}
+			}
+			scope:pyrrhus = { add_trait = victorious }
+		}
+		else = {
+			scope:pyrrhus = {
+				add_popularity = 10
+			}
+		}
+	}
+	add_treasury = { # Give money to Pyrrhus
+		value = has_monthly_income
+		multiply = -2
+	}
+	scope:pyrrhus = { 
+		hidden_effect = { # Move Pyrrhus
+			remove_all_positions = yes
+			move_country = c:EPI
+			remove_character_modifier = foreign_citizen
+		}
+	}
+	c:EPI = {
+		trigger_event = { id = dhe_dde_pyrrhus.5 }
+	}
+}
+
+pyrrhus_4_no_supporter_effect = {
+	if = { # Destroy friendship
+		limit = {
+			root.current_ruler = {
+				is_friend = scope:pyrrhus
+			}
+		}
+		scope:pyrrhus = { remove_friend = root.current_ruler }
+	}
+	scope:pyrrhus = {
+		if = { # Remove hostage flag
+			limit = {
+				has_variable = pyrrhus_hostage_flag
+			}
+			remove_variable = pyrrhus_hostage_flag
+		}
+		hidden_effect = { # Send to EPI
+			remove_all_positions = yes
+			move_country = c:EPI
+			remove_character_modifier = foreign_citizen
+		}
+	}
+	if = { # If general give Pyrrhus victorious trait
+		limit = {
+			scope:pyrrhus = {
+				OR = {
+					is_general = yes 
+					is_admiral = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:pyrrhus = {
+					number_of_status_traits < max_number_of_status_traits_svalue
+				}
+			}
+			scope:pyrrhus = { add_trait = victorious }
+		}
+		else = {
+			scope:pyrrhus = {
+				add_popularity = 10
+			}
+		}
+	}
+	c:EPI = { # Send EPI Pyrrhus returns event
+		trigger_event = { id = dhe_dde_pyrrhus.5 }
+	}
+}
+
+pyrrhus_return_effect = {
+	hidden_effect = {
+		current_ruler = { add_loyalty = loyalty_deposed }
+	}
+	if = { # If supported by small nation
+		limit = {
+			scope:pyrrhus = { has_variable = pyrrhus_supported_small_flag }
+		}
+		hidden_effect = {
+			add_opinion = { modifier = dhe_dde_pyrrhus_supported_op target = scope:pyrrhus_supporter_scope }
+			reverse_add_opinion = { modifier = dhe_dde_pyrrhus_supported_op target = scope:pyrrhus_supporter_scope }
+		}
+		add_treasury = { 
+			value = scope:pyrrhus_second_country_scope.has_monthly_income
+			multiply = 2
+		}
+		hidden_effect = { # Add heavy infantry to army
+			scope:dhe_dde_pyrrhus_army_scope = {
+				add_subunit = heavy_infantry
+				add_subunit = heavy_infantry
+				add_subunit = heavy_infantry
+			}
+		}
+		if = { # Move capital if not Ambrakia
+			limit = {
+				owns = 465
+				NOT = {	
+					p:465 = { is_capital = yes }
+				}
+			}
+			set_capital = 465
+			hidden_effect = {
+				p:465.state = {
+					set_state_capital = 465
+				}
+			}
+		}
+		hidden_effect = {
+			if = { # Move capital if not Ambrakia
+				limit = {
+					owns = 465
+					NOT = {	
+						p:465 = { is_capital = no }
+					}
+				}
+				p:465.state = {
+					set_state_capital = 465
+				}
+			}
+		}
+		if = { # If EPI doesn't own Corfu add claim
+			limit = {
+				NOT = { owns = 470 }
+			}
+			p:470 = { add_claim = c:EPI }
+		}
+		custom_tooltip = dhe_dde_pyrrhus.5.at
+		scope:pyrrhus = { # Remove support flag 
+			remove_variable = pyrrhus_supported_small_flag
+		}
+	}
+	else_if = { # Else if supported by Diadochus
+		limit = {
+			scope:pyrrhus = { has_variable = pyrrhus_supported_big_flag}
+		}
+		hidden_effect = {
+			add_opinion = { modifier = dhe_dde_pyrrhus_supported_op target = scope:pyrrhus_supporter_scope } # Add 100 opinion of Epirus to supporter
+			reverse_add_opinion = { modifier = dhe_dde_pyrrhus_supported_op target = scope:pyrrhus_supporter_scope } # Add 100 opinion of supporter to Epirus
+		}
+		add_treasury = { 
+			value = scope:pyrrhus_second_country_scope.has_monthly_income
+			multiply = 2
+		}
+		hidden_effect = {
+			scope:dhe_dde_pyrrhus_army_scope = {
+				add_subunit = warelephant
+			}
+			scope:dhe_dde_pyrrhus_army_scope = {
+				add_subunit = heavy_infantry
+				add_subunit = heavy_infantry
+				add_subunit = heavy_infantry
+			}
+		}
+		if = { # Move capital if not Ambrakia
+			limit = {
+				owns = 465
+				NOT = {	
+					p:465 = { is_capital = yes }
+				}
+			}
+			set_capital = 465
+			hidden_effect = {
+				p:465.state = {
+					set_state_capital = 465
+				}
+			}
+		}
+		if = { # If EPI doesn't own Corfu add claim
+			limit = {
+				NOT = { owns = 470 }
+			}
+			p:470 = { add_claim = c:EPI }
+		}
+		scope:pyrrhus = { # Remove support flag 
+			remove_variable = pyrrhus_supported_big_flag
+		}
+		custom_tooltip = dhe_dde_pyrrhus.5.bt
+	}
+	else = { # Else because not supported
+		hidden_effect = {
+			scope:dhe_dde_pyrrhus_army_scope = {
+				add_subunit = heavy_infantry
+				add_subunit = heavy_infantry
+			}
+		}
+		hidden_effect = {
+			reverse_add_opinion = { modifier = dhe_dde_pyrrhus_no_support_op target = scope:pyrrhus_second_country_scope } # Add -50 opinion of second country to Epirus
+		}
+		if = { # Move capital if not Ambrakia
+			limit = {
+				owns = 465
+				NOT = {	
+					p:465 = { is_capital = yes }
+				}
+			}
+			set_capital = 465
+			hidden_effect = {
+				p:465.state = {
+					set_state_capital = 465
+				}
+			}
+		}
+		if = { # If EPI doesn't own Corfu add claim
+			limit = {
+				NOT = { owns = 470 }
+			}
+			p:470 = { add_claim = c:EPI }
+		}
+		scope:pyrrhus = {
+			remove_variable = pyrrhus_not_supported_flag
+		}
+		custom_tooltip = dhe_dde_pyrrhus.5.ct
+	}
+}
+
+pyrrhus_hostage_effect = {
+	hidden_effect = {
+		c:EPI = {
+			trigger_event = { id = dhe_dde_pyrrhus.23 }
+		}
+	}
+	if = { # If General, give Tactician trait
+		limit = {
+			scope:pyrrhus = {
+				OR = {
+					is_general = yes 
+					is_admiral = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:pyrrhus = {
+					number_of_military_traits < max_number_of_military_traits_svalue
+				}
+			}
+			scope:pyrrhus = { add_trait = tactician }
+		}
+		else = {
+			scope:pyrrhus = { add_popularity = 10 }
+		}
+	}
+	hidden_effect = {
+		scope:pyrrhus = { # Pocket money
+			# Send to second country
+			add_gold = 50.0
+			remove_all_positions = yes
+			move_country = scope:pyrrhus_second_country_scope
+			remove_character_modifier = foreign_citizen
+		}
+	}
+	scope:pyrrhus_second_country_scope = { # Set SECOND COUNTRY flag and fire receiving event
+		trigger_event = { id = dhe_dde_pyrrhus.20 }
+		#set_variable = { 
+		#	name = pyrrhus_second_country_flag # SECOND COUNTRY
+		#}
+	}
+}
+
+pyrrhus_not_hostage_effect = {
+	if = { # If Taulantia befriend Pyrrhus with ruler
+		limit = {
+			tag = TLN
+			scope:pyrrhus = { can_get_friends = yes }
+			root.current_ruler = { can_get_friends = yes }
+		}
+		scope:pyrrhus = { add_friend = root.current_ruler }
+	}
+	scope:pyrrhus = { add_gold = 50.0 } # Pocket Money
+	if = { #  If general add Tactician trait
+		limit = {
+			scope:pyrrhus = {
+				OR = {
+					is_general = yes
+					is_admiral = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				scope:pyrrhus = {
+					number_of_military_traits < max_number_of_military_traits_svalue
+				}
+			}
+			scope:pyrrhus = { add_trait = tactician }
+		}
+		else = {
+			scope:pyrrhus = {
+				add_popularity = 10
+			}
+		}
+	}
+	trigger_event = {
+		id = dhe_dde_pyrrhus.4
+		days = { 360 1825 }
+	}
+}
+
+pyrrhus_refused_variable_cleaner_effect = {
+	if = {
+		limit = {
+			c:PRY = {
+				has_variable = pyrrhus_refused
+			}
+		}
+		c:PRY = {
+			remove_variable = pyrrhus_refused
+		}
+	}
+	if = {
+		limit = {
+			c:EGY = {
+				has_variable = pyrrhus_refused
+			}
+		}
+		c:EGY = {
+			remove_variable = pyrrhus_refused
+		}
+	}
+	if = {
+		limit = {
+			c:SEL = {
+				has_variable = pyrrhus_refused
+			}
+		}
+		c:SEL = {
+			remove_variable = pyrrhus_refused
+		}
+	}
+	if = {
+		limit = {
+			c:TRE = {
+				has_variable = pyrrhus_refused
+			}
+		}
+		c:TRE = {
+			remove_variable = pyrrhus_refused
+		}
+	}
+	if = {
+		limit = {
+			c:MAC = {
+				has_variable = pyrrhus_refused
+			}
+		}
+		c:MAC = {
+			remove_variable = pyrrhus_refused
+		}
+	}
+	if = {
+		limit = {
+			c:TLN = {
+				has_variable = pyrrhus_refused
+			}
+		}
+		c:TLN = {
+			remove_variable = pyrrhus_refused
+		}
+	}
+}
+
+pyrrhus_of_age_effect = {
+	if = {
+		limit = {
+			is_ruler = no
+			c:EPI = {
+				has_land = yes
+			}
+			employer = {
+				has_land = yes
+			}
+			NOT = {
+				employer = {
+					this = c:EPI
+				}
+			}
+		}
+		employer = {
+			trigger_event = {
+				id = dhe_dde_pyrrhus.27
+			}
+		}
+	}
+}
+
+pyrrhus_family_mover_effect = {
+	if = {
+		limit = {
+			scope:pyrrhus = {
+				exists = spouse
+			}
+		}
+		pyrrhus_wife_mover_effect = yes
+	}
+	if = {
+		limit = {
+			scope:pyrrhus = {
+				num_of_children > 0
+			}
+		}
+		pyrrhus_children_mover_effect = yes
+	}
+}
+
+pyrrhus_wife_mover_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				scope:pyrrhus.spouse = {
+					NOT = {
+						employer = c:EPI
+					}
+					prisoner = no
+				}
+			}
+			scope:pyrrhus.spouse ={
+				remove_all_positions = yes
+				move_country = c:EPI
+				remove_character_modifier = foreign_citizen	
+			}
+		}
+	}
+}
+
+pyrrhus_children_mover_effect = {
+	hidden_effect = {
+		while = {
+			limit = {
+				scope:pyrrhus = {
+					any_child = {
+						NOT = {
+							employer = c:EPI
+						}
+						prisoner = no
+					}
+				}
+			}
+			scope:pyrrhus = {
+				random_child = {
+					limit = {
+						NOT = { 
+							employer = c:EPI
+						}
+						prisoner = no
+					}
+					remove_all_positions = yes
+					move_country = c:EPI
+					remove_character_modifier = foreign_citizen
+				}
+			}
+		}
+	}
+}
