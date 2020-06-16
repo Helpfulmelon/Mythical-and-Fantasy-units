@@ -1,0 +1,80 @@
+Namespace = hell
+
+Hell.1 = {
+    type = country_event
+	title = Hell.1.t
+	desc = Hell.1.desc
+    picture = natural_disaster
+
+    trigger = {
+        has_global_variable = hell_unleashed
+    }
+
+    immediate = {
+		set_local_variable = {
+			name = rndx
+			value = {min = 1 max = 15}
+		}
+        while = {
+            count = 5
+            random_province = {
+                limit = {
+                    pops > 1
+                    is_capital = no
+                }
+                change_tag = c:HLL
+                set_province_modifier = Portal_to_hell
+            }
+
+
+        }
+    }
+}
+option = {
+    name = Hell.1.t
+    every_province = {
+        limit = {
+            c:HLL
+            has_province_modifier = Portal_to_hell
+        }
+    create_unit = {
+        location = THIS
+		sub_unit = heavy_cavalry
+		add_sub_unit = light_infantry
+		save_scope_as = target_army
+    }
+	}
+		while = {
+			value = rndx
+			switch = {
+				simple_trigger = barbtrooptype #if this doesnt work can set VALUE = to VARIABLE
+				1 = {
+					scope:target_army = {
+						add_sub_unit = light_infantry
+					}	
+				}
+				2 = {
+					scope:target_army = {
+						add_sub_unit = heavy_infantry
+					}
+				}
+				3 = {
+					scope:target_army = {
+						add_sub_unit = light_cavalry
+					}
+				}
+				4 = {
+					scope:target_army = {
+						add_sub_unit = heavy_cavalry
+					}
+				}
+				5 = {}
+				6 = {}
+				7 = {}
+			}
+			
+	}
+}
+
+
+#Some units that are small stacks with no commanders, some that are giant stacks with a commander, mixed troop types

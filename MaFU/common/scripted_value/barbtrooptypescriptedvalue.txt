@@ -1,0 +1,51 @@
+barb_troop_type = {
+	set_variable = {
+		name = trooptype
+		value = 0
+	}
+	random_list = {
+		1 = {
+			change_variable = {
+				name = trooptype
+				value = 1
+			}
+		}
+		1 = {
+			change_variable = {
+				name = trooptype
+				value = 2
+			}
+		}
+		1 = {
+			change_variable = {
+				name = trooptype
+				value = 3
+			}
+		}
+		1 = {
+			change_variable = {
+				name = trooptype
+				value = 4
+			}
+		}
+		1 = {
+			change_variable = {
+				name = trooptype
+				value = 5
+			}
+		}
+		1 = {
+			change_variable = {
+				name = trooptype
+				value = 6
+			}
+		}
+		1 = {
+			change_variable = {
+				name = trooptype
+				value = 7
+			}
+		}
+
+	}
+}
