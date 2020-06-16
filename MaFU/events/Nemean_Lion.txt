@@ -1,0 +1,178 @@
+﻿namespace = Nemean_Lion
+
+Nemean_Lion.1 = {
+    type = country_event
+	title = Nemean_Lion.1.t
+	desc = Nemean_Lion.1.desc
+    picture = natural_disaster
+    hidden = yes
+
+    trigger = {
+        has_global_variable = magic_returned
+        any_owned_province = {
+            location = {
+                area = greece
+            }
+        }
+        current_ruler = {
+            any_child = {
+                age > 18 #is_adult ?
+                is_alive = yes
+                female = no
+            }
+        }
+    }
+    immediate = {
+            current_ruler = {
+                any_child = {
+                    is_alive = yes
+                    female = no
+                    save_scope_as = target_child
+                }
+            }
+            if = {
+                limit = {
+                    scope:target_child = {
+                        OR = {
+                        has_trait = brave
+                        has_trait = ambitious
+                        }
+                        is_alive = yes
+                    }
+                }
+                random_list = {
+                    80 = {
+
+                    }
+                    20 = {
+                        trigger_event = {
+                            id = Nemean_Lion.2
+                        }
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    scope:target_child = {
+                        is_alive = yes
+                    }
+                }
+                random_list = {
+                    99 = {}
+                    1 = {trigger_event = {
+                        id = Nemean_Lion.2
+                        }
+                    }
+                }
+                
+            }
+        
+    }
+
+}
+Nemean_Lion.2 = { #Child requests to go on a hunt
+    type = country_event
+    title = Nemean_Lion.2.t
+    desc = Nemean_Lion.2.desc
+    picture = natural_disaster
+    trigger = {
+        scope:target_child = {
+            is_alive = yes
+        }          
+    }
+
+    immediate = { }
+
+    option = { #Let child go
+        name = Nemean_lion.2.a
+        scope:target_child = {
+             send_on_adventure = yes
+             trigger_event = {
+                 id = Nemean.Lion.3
+             }
+
+        }
+    }
+    option = {
+        name = Nemean_lion.2.b
+        scope:target_child = {
+            send_on_adventure = no #find vanilla script for this
+            add_loyalty = -20
+        }
+    }
+    option = {
+        name = Nemean_Lion.2.c
+        allow = {
+            current_ruler = {
+                has_trait = silver_tongue
+            }
+        }
+        Custom_tooltip = "Perhaps choose another, less dangerous way of proving yourself, my boy."
+    }
+}
+
+Nemean_Lion.3 = { #Child asks you for help and supplies
+    type = country_event
+    title = Nemean_Lion.3.t
+    desc = Nemean_Lion.3.desc
+    picture = natural_disaster
+    left_portrait = current_ruler
+    right_portrait = scope:target_child
+
+    trigger = {
+        OR = {
+            treasury >= 500
+            manpower >= 5
+        }
+    }
+
+    immediate = {
+        set_local_variable = {
+            name = NL_No_Of_Cohorts
+            value = 0
+        }
+    }
+
+    option = {
+        name = Nemean_Lion.3.a
+        add_treasury = -500
+        add_manpower = -5
+
+        change_variable = {
+            name = NL_No_Of_Cohorts
+            add = 5
+        }
+        scope:target_child = {
+            add_personal_wealth = 500
+        }
+        
+    }
+
+    option = {
+        name = Nemean_Lion.3.b #Only gold
+        add_treasury = -500
+        scope:target_child = {
+            add_personal_wealth = 500
+        }
+    }
+
+    option = {
+        name = Nemean_Lion.3.c #Provide nothing
+        scope:target_child = {
+            add_loyalty = -20
+        }
+    }
+
+
+}
+Nemean_Lion.4 = {
+    type = character_event
+    title = Nemean_Lion.3.t
+    desc = Nemean_Lion.3.desc
+    picture = natural_disaster
+    left_portrait = scope:target_child
+
+    trigger = {}
+
+    immediate = { }
+}
