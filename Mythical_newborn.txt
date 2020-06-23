@@ -1,0 +1,170 @@
+namespace = mythnewborn
+
+mythnewborn.1 = {
+	type = character_event
+	title = mythnewborn.1.t
+	desc = mythnewborn.1.desc
+
+	trigger = {
+			NOT = {
+				myth_sturdy_gen = yes
+			}
+			is_alive = yes
+	}
+	
+
+	immediate = {
+			if = {
+				limit = {
+					is_alive = yes
+					strengthgencompare = 0
+					scope:mother = { #If both parents are first gen (HAVE TRAIT)
+						var:strengthgen < 5
+					}
+					scope:father = {
+						var:strengthgen < 5
+					}
+				}
+				random_list = {
+					40 = {
+						scope:mother = {
+							switch = { #If child doesn't get it, give child second gen trait
+								trigger = var:strengthgen
+								1 = {
+									scope:newborn = {
+									set_variable = {
+									name = strengthgen
+									value = 5}
+								}}
+								2 = {
+									scope:newborn = {
+									set_variable = {
+									name = strengthgen
+									value = 6}
+								}}
+								3 = {
+									scope:newborn = {
+									set_variable = {
+									name = strengthgen
+									value = 7}
+								}}
+								4 = {
+									scope:newborn = {
+									set_variable = {
+									name = strengthgen
+									value = 8}
+								}}
+							}
+						}
+					}
+
+					60 = {
+						scope:mother = {
+							switch = {
+								trigger = var:strengthgen
+								1 = {
+									random_list = {
+										40 = {scope:newborn = {add_trait = brawny set_variable = {name = strengthgen value = 1}}}
+										60 = {scope:newborn = {set_variable = {name = strengthgen value = 5}}}
+								}
+								2 = {
+									random_list = {
+										40 = {scope:newborn = {add_trait = weak set_variable = {name = strengthgen value = 1}}}
+										60 = {scope:newborn = {set_variable = {name = strengthgen value = 6}}}								}
+								3 = {
+									random_list = {
+										10 = {scope:newborn = {add_trait = sturdy set_variable = {name = strengthgen value = 1}}}
+										90 = {scope:newborn = {set_variable = {name = strengthgen value = 7}}}								}
+								4 = {
+									random_list = {
+										10 = {scope:newborn = {add_trait = slight set_variable = {name = strengthgen value = 1}}}
+										90 = {scope:newborn = {set_variable = {name = strengthgen value = 8}}}								}
+							}
+						}
+					}
+					
+			}
+		}
+		else_if = {
+			limit = {
+				is_alive = yes
+				OR = {
+					AND = {
+						scope:mother = {
+							var:strengthgen >= 5
+							var:strengthgen <= 9
+						}
+						scope:father = {
+							var:strengthgen >= 5
+							var:strengthgen <= 9
+						}
+						strengthgencompare = 0
+					}
+					OR = {
+						scope:mother = {
+							var:strengthgen < 5
+						}
+						scope:father = {
+							var:strengthgen < 5
+						}
+					}
+				}
+			}
+			random_list = {
+				60 = {
+					scope:mother = {
+						switch = {
+							trigger = var:strengthgen
+							1 = {
+								scope:newborn = {
+								set_variable = {
+								name = strengthgen
+								value = 9}
+							}}
+							2 = {
+								scope:newborn = {
+								set_variable = {
+								name = strengthgen
+								value = 10}
+							}}
+							3 = {
+								scope:newborn = {
+								set_variable = {
+								name = strengthgen
+								value = 11}
+							}}
+							4 = {
+								scope:newborn = {
+								set_variable = {
+								name = strengthgen
+								value = 12}
+							}}
+						}
+					}
+				}
+
+				40 = {
+					scope:mother = {
+						switch = {
+							trigger = var:strengthgen
+							1 = {
+								random = {chance = 40 scope:newborn = {add_trait = brawny set_variable = {name = strengthgen value = 1}}}
+							}
+							2 = {
+								random = {chance = 40 scope:newborn = {add_trait = weak set_variable = {name = strengthgen value = 2}}}
+							}
+							3 = {
+								random = {chance = 10 scope:newborn = {add_trait = sturdy set_variable = {name = strengthgen value = 3}}}
+							}
+							4 = {
+								random = {chance = 10 scope:newborn = {add_trait = slight set_variable = {name = strengthgen value = 4}}}
+							}
+						}
+					}
+				}
+
+
+		}
+
+	}
+}

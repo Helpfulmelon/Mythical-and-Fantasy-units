@@ -1,0 +1,4 @@
+strengthgencompare = {
+	value = scope:mother.strengthgen
+	subtract = value.scope:father.strengthgen
+}
