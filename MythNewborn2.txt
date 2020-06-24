@@ -1,0 +1,72 @@
+namespace = mythnewborn
+
+mythnewborn.2 = {
+	type = character_event
+	title = mythnewborn.2.t
+	desc = mythnewborn.2.desc
+
+	trigger = {
+		is_female = yes
+		is_married = no
+		is_pregnant = no
+	}
+	immediate = {
+		make_pregnant = yes
+		set_variable = {
+			name = impregbygod
+			value = yes
+		}
+	}
+	option = {
+		name = mythnewborn.2.a
+		
+	}
+	option = {
+		name = mythnewborn.2.b
+		make_pregnant = no
+		remove_variable = impregbygod
+	}
+}
+mythnewborn.3 = {
+	type = character_event
+	title = mythnewborn.2.t
+	desc = mythnewborn.2.desc
+	
+	trigger = {
+		has_variable = impregbygod
+		scope:newborn = {
+			is_alive = yes
+		}
+	}
+	immediate = {
+		scope:newborn = {
+			set_variable = {
+				name = childofgod
+				value = yes
+			}
+			add_trait = demigod
+			random_list = {
+				60 = {if = {
+						limit = {
+							OR = {
+								has_trait = brawny
+								has_trait = weak
+								has_trait = slight
+							}
+						}
+						remove_trait = brawny
+						remove_trait = weak
+						remove_trait = slight
+						add_trait = sturdy
+				}	}
+				40 = {}
+			}
+		}
+	}
+	option = {
+		name = mythnewborn.3.a
+	}
+
+}
+
+#ambition for proving self, has higher chance to fire hunt for nemean lion/lernean hydra/other 'labours'
